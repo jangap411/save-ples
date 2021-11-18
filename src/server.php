@@ -1,25 +1,39 @@
 <?php
 
-session_start();
+
 
 require 'db-connection.php';
 
-$_SESSION['user'] = "";
+session_start();
+
+// $_SESSION['user'] = "";
 
 
 
 // create login functionality 
 if(isset($_POST['login-btn'])){
-    $username = $_POST[''];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM SELECT * FROM `users` WHERE ``";
+    // $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password'";
+    $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password';";
     $result = mysqli_query($db, $query);
-    $row = mysqli_fetch_array($result);
+    // $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
+
+
 
     if(mysqli_num_rows($result) == 1){
         // set session & user information
-        $_SESSION['user'] = $firtName." ".$lastName;
+        $_SESSION['UserID'] = $row['userID'];
+        $_SESSION['user'] = $username;//$row['username'];
+        
+        header('location:../index.php');
+    }else{
+        $_SESSION['message'] = "Invalid Username or password";
+        echo '<script>alert("Invalid Username or password");</script>';
+        header('location:../login.php');
+
     }
 
     }
@@ -51,11 +65,28 @@ if(isset($_POST['login-btn'])){
             $_SESSION['message'] = "Error Registering User";
         }
 
+    }
 
+    function registerUser(){
+
+    }
+
+
+    // get the user details
+    function readUserDetails(){
+
+        global $db;
+        $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password'";
 
 
     }
 
+    // logout 
+     if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['userSession']);
+        header("Location: ../login.php");
+    }
 
 
 
