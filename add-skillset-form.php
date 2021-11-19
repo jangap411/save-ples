@@ -33,9 +33,9 @@
                 <input
                 type="text"
                 class="form-control form-control-user"
-                id="skillset"
-                name="skillset"
-                placeholder="Skill Set"
+                id="skillsetRoles"
+                name="skillsetRoles"
+                placeholder="Skill Set Roles"
                 />
             </div>
             <div class="col-sm-6">
@@ -43,9 +43,9 @@
                 <input
                 type="text"
                 class="form-control form-control-user"
-                id="passMark"
-                name="passMark"
-                placeholder="Enter Pass Mark"
+                id="skillsetTag"
+                name="skillsetTag"
+                placeholder="Enter Tags"
                 />
             </div>
         </div>
