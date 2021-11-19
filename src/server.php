@@ -26,7 +26,7 @@ if(isset($_POST['login-btn'])){
     if(mysqli_num_rows($result) == 1){
         // set session & user information
         $_SESSION['UserID'] = $row['userID'];
-        $_SESSION['user'] = $username;//$row['username'];
+        $_SESSION['user'] = $row['name']; //$username;
         
         header('location:../index.php');
     }else{
@@ -77,9 +77,9 @@ if(isset($_POST['login-btn'])){
 
         global $db;
         $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password'";
-
-
     }
+
+    // register add couse
 
     // logout 
      if (isset($_GET['logout'])) {
