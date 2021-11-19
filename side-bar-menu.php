@@ -65,7 +65,7 @@
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="add-skill-sets.php">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-toolbox"></i>
             <span>Add Skill Sets</span></a>
     </li>
     <!-- Divider -->

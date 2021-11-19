@@ -39,14 +39,16 @@
                 />
             </div>
             <div class="col-sm-6">
-                <p>Tags</p>
-                <input
-                type="text"
-                class="form-control form-control-user"
-                id="skillsetTag"
-                name="skillsetTag"
-                placeholder="Enter Tags"
-                />
+                <label class="small" for="user-type">Course</label>
+                <select
+                    class="form-control"
+                    id="attempts"
+                    name="attempts"
+                >
+                    <option value="1">Welding</option>
+                    <option value="2">Plumbing</option>
+                    <option value="3">Painting</option>
+                </select>
             </div>
         </div>
         <div class="form-group row">

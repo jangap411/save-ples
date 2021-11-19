@@ -40,15 +40,15 @@
             </div>
             <div class="col-sm-6">
                 <label class="small" for="user-type">Max Test Attempts</label>
-            <select
-                class="form-control"
-                id="user-type"
-                name="user-type"
-            >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
+                <select
+                    class="form-control"
+                    id="attempts"
+                    name="attempts"
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
             </div>
         </div>
         <div class="form-group row">
@@ -120,7 +120,7 @@
         <button
             class="btn btn-primary btn-user btn-block"
             name="btn-register"
-            id="btn-register"
+            id="btn-register-course"
         >
             Register Course
         </button>

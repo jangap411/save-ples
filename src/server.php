@@ -81,6 +81,11 @@ if(isset($_POST['login-btn'])){
 
     // register add couse
 
+    if(isset($_POST['btn-register-course'])){
+        
+    }
+
+
     // logout 
      if (isset($_GET['logout'])) {
         session_destroy();
