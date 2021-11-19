@@ -1,6 +1,8 @@
 <?php
 
-    $query = mysqli_query("SELECT * FROM `videos`;");
+    require 'db-connection.php';
+
+    $query = mysqli_query($db,"SELECT * FROM `videos`;");
 
     while($row = mysqli_fetch_assoc($query)){
 

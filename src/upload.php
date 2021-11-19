@@ -2,15 +2,22 @@
 
 require 'db-connection.php';
 
+// $con = mysqli_connect("localhost",'root','','igo');
+
 if (isset($_POST['submit'])) {
     
-    $name = $_FILES['file']['name'];
-    $temp = $_FILES['file']['tmp_name'];
+//    $id = $_POST['id'];
+    $file = $_FILES['file']['name'];
+    move_uploaded_file($_FILES['file']['tmp_name'],"./uploads/".$_FILES['file']['name']);
 
-    move_uploaded_file($temp,"uploads/".$name);
-    $url =  "http://localhost/startbootstrap-sb-admin-2/uploads/$name";
+    $query = "INSERT INTO `videos` (`id`, `name`, `url`) VALUES (NULL, '$file', '$file');";
 
-    $result = mysqli_query("INSERT INTO `videos` VALUES('','$name','$url');",$db);
+    if(mysqli_query($db,$query)){
+        echo "<script>alert('success!');</script>";
+    }else{
+        echo "<script>alert('Error!');</script>";
+
+    }
 
 }
 
