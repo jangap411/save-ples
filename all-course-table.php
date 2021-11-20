@@ -13,6 +13,7 @@
                         <th>Max Attempts</th>
                         <th>Course File</th>
                         <th>Couse Video</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <!-- table footer -->
@@ -26,11 +27,12 @@
                         <th>Max Attempts</th>
                         <th>Course File</th>
                         <th>Couse Video</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <!-- table body -->
-                    <!-- <tr>
+                    <tr>
                         <td>Welding </td>
                         <td>System Architect</td>
                         <td>Plumbing</td>
@@ -39,7 +41,17 @@
                         <td>5</td>
                         <td>File One</td>
                         <td>Video One</td>
-                    </tr> -->
+                        <td>
+                            <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
+                                <i class="fas fa-check"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
                     
                 </tbody>
             </table>
