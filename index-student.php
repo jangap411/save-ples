@@ -38,7 +38,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include 'side-bar-menu.php'; ?>
+        <?php include 'student-side-menu-bar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -59,7 +59,7 @@
 
                     <div class="row">
                         <!-- Dashboard cards -->
-                        <?php include 'dashboard-cards.php'; ?>
+                        <?php include 'student-dashboard-cards.php'; ?>
                         
                     </div>
                     

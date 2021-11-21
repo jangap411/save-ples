@@ -13,7 +13,7 @@
                         <th>Max Attempts</th>
                         <th>Course File</th>
                         <th>Couse Video</th>
-                        <th colspan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <!-- table footer -->
@@ -27,7 +27,7 @@
                         <th>Max Attempts</th>
                         <th>Course File</th>
                         <th>Couse Video</th>
-                        <th colspan="2">Action</th>
+                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -42,15 +42,15 @@
                         <td>File One</td>
                         <td>Video One</td>
                         <td>
-                            <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
-                                <i class="fas fa-check"></i>
+                            <a href="view-course-info.php" class="btn btn-info btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Enter">
+                                <i class="fas fa-external-link-square-alt"></i>
                             </a>
                         </td>
-                        <td>
+                        <!-- <td>
                             <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
                                 <i class="fas fa-trash"></i>
                             </a>
-                        </td>
+                        </td> -->
                     </tr>
                     
                 </tbody>
