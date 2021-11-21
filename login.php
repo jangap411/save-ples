@@ -63,6 +63,18 @@
                           placeholder="Password"
                         />
                       </div>
+                       <div class="form-group">
+                       <label class="small" for="user-type">Login As</label>
+                      <select
+                        class="form-control"
+                        id="user-type"
+                        name="user-type"
+                      >
+                        <option value="1">Student</option>
+                        <option value="2">Teacher</option>
+                        <option value="3">Admin</option>
+                      </select>
+                      </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
                           <input
