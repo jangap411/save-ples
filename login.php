@@ -48,10 +48,10 @@
                         <input
                           type="text"
                           class="form-control form-control-user"
-                          id="username"
-                          name="username"
+                          id="email"
+                          name="email"
                           aria-describedby="emailHelp"
-                          placeholder="Enter Username..."
+                          placeholder="Enter your Email..."
                         />
                       </div>
                       <div class="form-group">

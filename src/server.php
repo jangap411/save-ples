@@ -12,13 +12,14 @@ session_start();
 
 // create login functionality 
 if(isset($_POST['login-btn'])){
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     $userType = $_POST['user-type'];
 
     if($userType == 1){
         // student login
-        $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password';";
+        
+        $query = "SELECT * FROM `users` WHERE `email`='$email' AND `password`='$password';";
         $result = mysqli_query($db, $query);
         // $row = mysqli_fetch_array($result);
         $row = mysqli_fetch_assoc($result);
@@ -27,8 +28,8 @@ if(isset($_POST['login-btn'])){
 
         if(mysqli_num_rows($result) == 1){
             // set session & user information
-            $_SESSION['UserID'] = $row['userID'];
-            $_SESSION['user'] = $row['name']; //$username;
+            $_SESSION['UserID'] = $row['UserID'];
+            $_SESSION['user'] = $row['username']; //$username;
             
             header('location:../index-student.php');
         }else{
@@ -68,7 +69,8 @@ if(isset($_POST['login-btn'])){
 
     }
 
-// registration
+
+    // registration
 if(isset($_POST['btn-register'])){
     
     $firtName = $_POST['FirstName'];
@@ -84,14 +86,57 @@ if(isset($_POST['btn-register'])){
     $district = $_POST['district'];
     $userType = $_POST['user-type'];
     $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $username = $_POST['username'];
 
-    $sql_insert_query = "INSERT INTO `users` (`UserID`, `FirstName`, `LastName`, `DOB`, `Gender`, `Clan`, `Village`, `District`, `LLG`, `Ward`, `Province`, `Phone`, `Contact`, `UserType`) VALUES (NULL, '$firtName', '$lastName', '$dob', '$gender', '$clan', '$village', '$district', '$llg', '$ward', '$province', '$phone', '$contactAdress', '$userType');";
+    // $sql_insert_query = "INSERT INTO `users` (`UserID`, `FirstName`, `LastName`, `email`, `username`, `password`, `DOB`, `Gender`, `Clan`, `Village`, `District`, `LLG`, `Ward`, `Province`, `Phone`, `Contact`, `UserType`) VALUES (NULL, '$firtName', '$lastName', '$email', '$username', '$password', '$dob', '$gender', '$clan', '$village', '$district', '$llg', '$ward', '$province', '$contactAdress', '$userType');";
+
+    $sql_insert_query = "INSERT INTO `users`(
+    `UserID`,
+    `FirstName`,
+    `LastName`,
+    `email`,
+    `username`,
+    `password`,
+    `DOB`,
+    `Gender`,
+    `Clan`,
+    `Village`,
+    `District`,
+    `LLG`,
+    `Ward`,
+    `Province`,
+    `Phone`,
+    `Contact`,
+    `UserType`
+)
+VALUES(
+    NULL,
+    '$firstName',
+    '$lastName',
+    '$email',
+    '$username',
+    '$password',
+    '$dob',
+    '$gender',
+    '$clan',
+    '$village',
+    '$district',
+    '$llg',
+    '$ward',
+    '$province',
+    '$phone',
+    '$contactAddress',
+    '$userType'
+);";
 
     if(mysqli_query($db,$sql_insert_query)){
         $_SESSION['message'] = "User Registered";
-            header("Location:../login.html");
+            header("Location:../login.php");
 
     }else{
+        echo "Error Registering User";
         $_SESSION['message'] = "Error Registering User";
     }
 
