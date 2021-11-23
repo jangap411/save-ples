@@ -19,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SAVE PLES - Dashboard</title>
+    <title>SAVE PLES - My Course</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,12 +55,12 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Resource file for: <span><?php echo $_SESSION['courseName'];?></h1>
+                    <h1 class="h3 mb-4 text-gray-800">My Course: <span><?php echo $_SESSION['courseName'];?></span></h1>
 
                     <div class="row">
                         <!-- Dashboard cards -->
-                        <?php //include 'dashboard-cards.php'; ?>
-                        <?php include 'video-card.php'; ?>
+                        <?php include 'student-dashboard-cards.php'; ?>
+                        <?php include 'course-resources.php'; ?>
                         
                     </div>
                     
@@ -103,6 +103,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

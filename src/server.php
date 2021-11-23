@@ -264,7 +264,7 @@ if(isset($_POST['btn-register'])){
             }
     }
 
-    // get course information to upload resources
+    // get course information to upload resources mycourse
     if(isset($_GET['course'])){
         $_SESSION['courseId'] = $_GET['course'];
         // echo "<script>alert('{$_GET['course']}');</script>";
@@ -272,6 +272,17 @@ if(isset($_POST['btn-register'])){
 
     }
 
+    // open student course resource
+    if(isset($_GET['mycourse'])){
+        $_SESSION['courseId'] = $_GET['mycourse'];
+        $_SESSION['courseName'] = $_GET['name'];
+
+        // echo "<script>alert('{$_GET['course']}');</script>";
+        echo "<script>window.location = '../my-course-resources.php';</script>";
+
+    }
+
+    // open watch video page
     if(isset($_GET['fileid'])){
         $_SESSION['fileId'] = $_GET['fileid'];
         // echo "<script>alert('{$_GET['fileid']}');</script>";
@@ -279,11 +290,52 @@ if(isset($_POST['btn-register'])){
 
     }
 
+    // student watch
+    if(isset($_GET['fid'])){
+        $_SESSION['fileId'] = $_GET['fid'];
+        // echo "<script>alert('{$_GET['fileid']}');</script>";
+        echo "<script>window.location = '../watch-video.php';</script>";
+
+    }
 
 
+
+    // approve  a course
+    if(isset($_GET['approve'])){
+        $courseId = $_GET['approve'];
+        $skillsetId = $_GET['skillID'];
+
+        $update_sql_query = "UPDATE `Courses` SET `approved` = 'true' WHERE `Courses`.`CourseID` =$courseId AND `Courses`.`Skillsets_SkillID` = $skillsetId;";
+
+        if(mysqli_query($db,  $update_sql_query)){
+            echo "<script>alert('Course approved');</script>";
+            echo "<script>window.location = '../see-courses.php'</script>";
+        }else{
+            echo "<script>alert('Error Updating');</script>";
+            echo "<script>window.location = '../see-courses.php'</script>";
+        }
+    }
+
+    // enroll to a course
+    if(isset($_GET['enroll'])){
+        $courseID = $_GET['enroll'];
+        $studentID = $_GET['std'];
+
+        $query = "INSERT INTO `enrollment` (`studentId`, `courseID`) VALUES ('$studentID', '$courseID')";
+        $result = mysqli_query($db, $query);
+
+        if($result){
+            echo "<script>alert('Enroll to course');</script>";
+            echo "<script>window.location = '../see-approved-courses.php';</script>";
+        }else{
+            echo "<script>alert('Enroll to course');</script>";
+            echo "<script>window.location = '../see-approved-courses.php';</script>";
+        }
+
+    }
 
     // logout 
-     if (isset($_GET['logout'])) {
+    if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['userSession']);
         header("Location: ../login.php");

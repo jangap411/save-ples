@@ -25,7 +25,7 @@
             </a>
             <?php }else { ?>
             <h5>File Name: <span class="text-primary"><?php echo $fetch['fileName']?></span></h5>
-                <a href="saveples/<?php echo $fetch['location']?>" class="mb-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <a href="saveples/<?php echo $fetch['location']?>" class="mb-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm" target="_blank">
                     <i class="fas fa-download fa-sm text-white-50"></i> 
                 Download File
             </a>

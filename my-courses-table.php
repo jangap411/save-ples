@@ -9,11 +9,8 @@
                         <th>Description</th>
                         <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Pass Mark</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <!-- table footer -->
@@ -23,35 +20,31 @@
                         <th>Description</th>
                         <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Pass Mark</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
-                        <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <!-- table body -->
+                    <!-- SELECT * FROM `Courses`,`enrollment`,`users` WHERE `Courses`.`CourseID`=`enrollment`.`courseID` AND `users`.`UserID`=`enrollment`.`studentId` AND `enrollment`.`studentId`=1; -->
+                    <?php
+                        $id = $_SESSION['UserID'];
+                        require 'src/db-connection.php';
+
+                        $query = mysqli_query($db, "SELECT * FROM `Courses`,`enrollment`,`users` WHERE `Courses`.`CourseID`=`enrollment`.`courseID` AND `users`.`UserID`=`enrollment`.`studentId` AND `enrollment`.`studentId`=$id;") or die(mysqli_error());
+    			        while($fetch = mysqli_fetch_array($query)){
+                    ?>
                     <tr>
-                        <td>Welding </td>
-                        <td>System Architect</td>
-                        <td>Plumbing</td>
-                        <td>Jack</td>
-                        <td>2011/04/25</td>
-                        <td>5</td>
-                        <td>File One</td>
-                        <td>Video One</td>
-                        <td>
-                            <a href="view-course-info.php" class="btn btn-info btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Enter">
-                                <i class="fas fa-external-link-square-alt"></i>
-                            </a>
-                        </td>
-                        <!-- <td>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td> -->
+                        <td><a href="./src/server.php?mycourse=<?php echo $fetch['CourseID'];?>&name=<?php echo $fetch['CourseName']?>"><?php echo $fetch['CourseName']?></a></td>
+                        <td><?php echo $fetch['Course_description']?></td>
+                        <td><?php echo $fetch['Skillsets_SkillID']?></td>
+                        <td><?php echo $fetch['TrainerID']?></td>
+                        <td><?php echo $fetch['PassMark']?></td>
+                        <td><?php echo $fetch['MaxAttempts']?></td>
                     </tr>
+                    <?php
+    			        }
+    		        ?>
                     
                 </tbody>
             </table>

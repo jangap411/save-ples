@@ -5,14 +5,14 @@
                 <!-- table head -->
                 <thead>
                     <tr>
-                        <th>Course Name</th>
+                       <th>Course Name</th>
                         <th>Description</th>
-                        <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Date Added</th>
+                        <th>Pass Mark</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
+                        <th>Tags</th>
+                        <th>Approved</th>
                         <th colspan="3">Action</th>
                     </tr>
                 </thead>
@@ -21,12 +21,12 @@
                     <tr>
                         <th>Course Name</th>
                         <th>Description</th>
-                        <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Date Added</th>
+                        <th>Pass Mark</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
+                        <th>Tags</th>
+                        <th>Approved</th>
                         <th colspan="3">Action</th>
                     </tr>
                 </tfoot>
@@ -48,7 +48,7 @@
                         <td><?php echo $fetch['Tag']?></td>
                         <td><?php echo $fetch['approved']?></td>
                         <td>
-                            <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
+                            <a href="./src/server.php?approve=<?php echo $fetch['CourseID']?>&skillID=<?php echo $fetch['Skillsets_SkillID'];?>" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Approve">
                                 <i class="fas fa-check"></i>
                             </a>
                         </td>
@@ -58,11 +58,9 @@
                             </a>
                         </td>
                         <td>
-                            <a href="./src/server.php?course=<?php echo $fetch['CourseID'];?>" >
-                                <!-- <span class="icon text-white-50">
-                                    <i class="fas fa-info-circle"></i>
-                                </span> -->
-                                <span class="text">Manage</span>
+
+                            <a class="btn btn-info btn-circle btn-sm" href="./src/server.php?course=<?php echo $fetch['CourseID'];?>" data-toggle="tooltip" data-placement="top" title="Manage">
+                                <i class="fas fa-cogs fa-sm fa-fw"></i>
                             </a>
                         </td>
                     </tr>

@@ -7,12 +7,11 @@
                     <tr>
                         <th>Course Name</th>
                         <th>Description</th>
-                        <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Pass Mark</th>
+                        <th>Tag</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
+                        <th>Skill Sets</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -21,39 +20,39 @@
                     <tr>
                         <th>Course Name</th>
                         <th>Description</th>
-                        <th>Skill Sets</th>
                         <th>Trainer</th>
-                        <th>Added date</th>
+                        <th>Pass Mark</th>
+                        <th>Tag</th>
                         <th>Max Attempts</th>
-                        <th>Course File</th>
-                        <th>Couse Video</th>
+                        <th>Skill Sets</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <!-- table body -->
+                    <?php
+                        require 'src/db-connection.php';
+
+                        $query = mysqli_query($db, "SELECT * FROM `Courses` WHERE `approved`='true';") or die(mysqli_error());
+    			        while($fetch = mysqli_fetch_array($query)){
+                    ?>
                     <tr>
-                        <td>Welding </td>
-                        <td>System Architect</td>
-                        <td>Plumbing</td>
-                        <td>Jack</td>
-                        <td>2011/04/25</td>
-                        <td>5</td>
-                        <td>File One</td>
-                        <td>Video One</td>
+                        <td><?php echo $fetch['CourseName']?> </td>
+                        <td><?php echo $fetch['Course_description']?></td>
+                        <td><?php echo $fetch['TrainerID']?></td>
+                        <td><?php echo $fetch['PassMark']?></td>
+                        <td><?php echo $fetch['Tag']?></td>
+                        <td><?php echo $fetch['MaxAttempts']?></td>
+                        <td><?php echo $fetch['Skillsets_SkillID']?></td>
                         <td>
-                            <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Enroll">
+                            <a href="./src/server.php?enroll=<?php echo $fetch['CourseID'];?>&std=<?php echo $_SESSION['UserID'];?>" class="btn btn-success btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Enroll">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                         </td>
-                        <!-- <td>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td> -->
                     </tr>
-                    
-                </tbody>
+                    <?php
+    			        }
+    		        ?>
             </table>
         </div>
     </div>

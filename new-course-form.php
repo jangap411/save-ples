@@ -163,7 +163,7 @@
                 class="form-control form-control-user"
                 id="approve"
                 name="approve"
-                value="0"
+                value="false"
                 />
             </div>
         </div>
