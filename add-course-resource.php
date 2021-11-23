@@ -16,8 +16,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Learning website, teaching you new skill sets">
+    <meta name="keywords" content="Saveples, Learning, Skills, Skill sets">
+    <meta name="author" content="Jedidiah Angap">
 
     <title>SAVE PLES - Manage</title>
 
