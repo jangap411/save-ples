@@ -1,3 +1,5 @@
+
+
 <div class="card shadow mb-4">
 <div class="card-body">
     <form class="user" action="./src/server.php" method="post">
@@ -15,26 +17,26 @@
         
         </div>
         <div class="col-sm-6">
-            <label for="contactAdress" class="small"
+            <label for="courseDescrpt" class="small"
             >Course Description</label
             >
             <textarea
             class="form-control"
-            id="contactAdress"
-            name="contactAdress"
+            id="courseDescrpt"
+            name="courseDescrpt"
             rows="3"
             ></textarea>
         </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <p>course date</p>
+                <p>Date Added</p>
                 <input
                 type="date"
                 class="form-control form-control-user"
-                id="dob"
-                name="dob"
-                placeholder="DOB"
+                id="addDate"
+                name="addDate"
+                placeholder="Date"
                 required
                 />
             </div>
@@ -51,30 +53,30 @@
                 </select>
             </div>
         </div>
-        <div class="form-group row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <p>Course File</p>
-            <input
-            type="file"
-            class="form-control form-control-user"
-            id="village"
-            name="village"
-            placeholder="Village"
-            required
-            />
-        </div>
-        <div class="col-sm-6">
-            <p>Course Video</p>
-            <input
-            type="file"
-            class="form-control form-control-user"
-            id="llg"
-            name="llg"
-            placeholder="LLG"
-            required
-            />
-        </div>
-        </div>
+        <!-- <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <p>Course File</p>
+                <input
+                type="file"
+                class="form-control form-control-user"
+                id="file"
+                name="file"
+                placeholder="Course File"
+                required
+                />
+            </div>
+            <div class="col-sm-6">
+                <p>Course Video</p>
+                <input
+                type="file"
+                class="form-control form-control-user"
+                id="video"
+                name="video"
+                placeholder="Course Videos"
+                required
+                />
+            </div>
+        </div> -->
     
         <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -92,14 +94,26 @@
         
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <p>Skill Set</p>
-                <input
-                type="text"
-                class="form-control form-control-user"
-                id="skillset"
-                name="skillset"
-                placeholder="Skill Set"
-                />
+                 <label class="small" for="skillset">Skill Set</label>
+                 <?php 
+                    $skillsetQuery = "SELECT * FROM `Skillsets` WHERE 1;";
+                    $result = mysqli_query($db, $skillsetQuery);
+
+                    echo '<select class="form-control" id="skillset" name="skillset">';
+                    if(mysqli_num_rows($result)>0){
+
+                        while($row = mysqli_fetch_assoc($result)){
+                            // echo ' <option value="{'$row['UserID'}">'{$row['username']}'</option>';
+                            echo "<option value='{$row['SkillID']}'>";
+                            echo $row['SkillName'];
+                            echo "</option>";
+                        }
+                    }
+
+                    echo '</select>';
+
+                 ?>
+                </select>
             </div>
             <div class="col-sm-6">
                 <p>Course Pass Mark</p>
@@ -114,12 +128,48 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="hidden" name="trainerId" value="">
+                 <label class="small" for="user-type">Choose Trainer</label>
+                 <?php 
+                    $trainerQuery = "SELECT * FROM `users` WHERE `UserType`=2;";
+                    $result = mysqli_query($db, $trainerQuery);
+
+                    echo '<select class="form-control" id="trainerId" name="trainerId">';
+                    if(mysqli_num_rows($result)>0){
+
+                        while($row = mysqli_fetch_assoc($result)){
+                            // echo ' <option value="{'$row['UserID'}">'{$row['username']}'</option>';
+                            echo "<option value='{$row['UserID']}'>";
+                            echo $row['username'];
+                            echo "</option>";
+                        }
+                    }
+
+                    echo '</select>';
+
+                 ?>
+                </select>
+            </div>
+             <div class="col-sm-6">
+                <p>Enter Tag</p>
+                <input
+                type="text"
+                class="form-control form-control-user"
+                id="tag"
+                name="tag"
+                placeholder="Enter Tags"
+                />
+                 <input
+                type="hidden"
+                class="form-control form-control-user"
+                id="approve"
+                name="approve"
+                value="0"
+                />
             </div>
         </div>
         <button
             class="btn btn-primary btn-user btn-block"
-            name="btn-register"
+            name="btn-register-course"
             id="btn-register-course"
         >
             Register Course

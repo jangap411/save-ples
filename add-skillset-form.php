@@ -15,7 +15,7 @@
             
             </div>
             <div class="col-sm-6">
-                <label for="contactAdress" class="small"
+                <label for="skillDescription" class="small"
                 >Skill Set Description</label
                 >
                 <textarea
@@ -58,8 +58,8 @@
         </div> 
         <button
             class="btn btn-primary btn-user btn-block"
-            name="btn-register"
-            id="btn-register"
+            name="add-skillset"
+            id="add-skillset"
         >
             Save Skillsets
         </button>

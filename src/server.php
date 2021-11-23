@@ -44,7 +44,7 @@ if(isset($_POST['login-btn'])){
         // admin login
 
         // $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password'";
-        $query = "SELECT * FROM `admin` WHERE `username`='$username' AND `password`='$password';";
+        $query = "SELECT * FROM `admin` WHERE `email`='$email' AND `password`='$password';";
         $result = mysqli_query($db, $query);
         // $row = mysqli_fetch_array($result);
         $row = mysqli_fetch_assoc($result);
@@ -67,13 +67,13 @@ if(isset($_POST['login-btn'])){
 
     
 
-    }
+}
 
 
-    // registration
+// registration
 if(isset($_POST['btn-register'])){
     
-    $firtName = $_POST['FirstName'];
+    $firstName = $_POST['FirstName'];
     $lastName = $_POST['LastName'];
     $dob = $_POST['dob'];
     $clan = $_POST['clan'];
@@ -82,7 +82,7 @@ if(isset($_POST['btn-register'])){
     $ward = $_POST['ward'];
     $province = $_POST['province'];
     $phone = $_POST['phone'];
-    $contactAdress = $_POST['contactAdress'];
+    $contactAddress = $_POST['contactAdress'];
     $district = $_POST['district'];
     $userType = $_POST['user-type'];
     $gender = $_POST['gender'];
@@ -93,42 +93,42 @@ if(isset($_POST['btn-register'])){
     // $sql_insert_query = "INSERT INTO `users` (`UserID`, `FirstName`, `LastName`, `email`, `username`, `password`, `DOB`, `Gender`, `Clan`, `Village`, `District`, `LLG`, `Ward`, `Province`, `Phone`, `Contact`, `UserType`) VALUES (NULL, '$firtName', '$lastName', '$email', '$username', '$password', '$dob', '$gender', '$clan', '$village', '$district', '$llg', '$ward', '$province', '$contactAdress', '$userType');";
 
     $sql_insert_query = "INSERT INTO `users`(
-    `UserID`,
-    `FirstName`,
-    `LastName`,
-    `email`,
-    `username`,
-    `password`,
-    `DOB`,
-    `Gender`,
-    `Clan`,
-    `Village`,
-    `District`,
-    `LLG`,
-    `Ward`,
-    `Province`,
-    `Phone`,
-    `Contact`,
-    `UserType`
-)
-VALUES(
-    NULL,
-    '$firstName',
-    '$lastName',
-    '$email',
-    '$username',
-    '$password',
-    '$dob',
-    '$gender',
-    '$clan',
-    '$village',
-    '$district',
-    '$llg',
-    '$ward',
-    '$province',
-    '$phone',
-    '$contactAddress',
-    '$userType'
+        `UserID`,
+        `FirstName`,
+        `LastName`,
+        `email`,
+        `username`,
+        `password`,
+        `DOB`,
+        `Gender`,
+        `Clan`,
+        `Village`,
+        `District`,
+        `LLG`,
+        `Ward`,
+        `Province`,
+        `Phone`,
+        `Contact`,
+        `UserType`
+    )
+    VALUES(
+        NULL,
+        '$firstName',
+        '$lastName',
+        '$email',
+        '$username',
+        '$password',
+        '$dob',
+        '$gender',
+        '$clan',
+        '$village',
+        '$district',
+        '$llg',
+        '$ward',
+        '$province',
+        '$phone',
+        '$contactAddress',
+        '$userType'
 );";
 
     if(mysqli_query($db,$sql_insert_query)){
@@ -137,7 +137,7 @@ VALUES(
 
     }else{
         echo "Error Registering User";
-        $_SESSION['message'] = "Error Registering User";
+        $_SESSION['message'] = "Error Registering User".mysqli_error($db);
     }
 
 }
@@ -155,10 +155,133 @@ VALUES(
     }
 
     // register add couse
-
     if(isset($_POST['btn-register-course'])){
+        $course_name = $_POST['courseName'];
+        $course_descrpt = $_POST['courseDescrpt'];
+        $skillset = $_POST['skillset'];
+        $trainerId = $_POST['trainerId'];
+        $dateAdded = $_POST['addDate'];
+        $passMark = $_POST['passMark'];
+        $max_tries = $_POST['attempts'];
+        $approve = $_POST['approve'];
+        // $course_files = $_FILES['file']['name'];
+        // move_uploaded_file($_FILES['file']['tmp_name'],"../uploadContents/".$_FILES['file']['name']);
+        // $course_videos = $_FILES['video']['name'];
+        // move_uploaded_file($_FILES['video']['tmp_name'],"../uploadContents/".$_FILES['video']['name']);
+        $tags = $_POST['tag'];
+
+        $sql_insert_course_query = "INSERT INTO `Courses`(
+            `CourseID`,
+            `CourseName`,
+            `Course_description`,
+            `TrainerID`,
+            `DateAAdded`,
+            `PassMark`,
+            `MaxAttempts`,
+            `Tag`,
+            `Approved`,
+            `Skillsets_SkillID`
+            )
+    VALUES(
+        NULL,
+        '$course_name',
+        '$course_descrpt',
+        '$trainerId',
+        '$dateAdded',
+        '$passMark',
+        '$max_tries',
+        '$tags',
+        '$approve',
+        '$skillset'
+    )";
+
+    if(mysqli_query($db, $sql_insert_course_query)){
+        $_SESSION['message'] = "Success, records saved";
+        echo "<script>alert('Success, records saved');window.location.href = 'http://localhost/saveples/addCourse.php';</script>";
+        // header("Location:../addCourse.php");
+    }else{
+        $_SESSION['message'] = "Error, records not saved";
+        echo "<script>alert('Error, records not saved');</script>";
+        // window.location.href = 'http://localhost/saveples/addCourse.php';
+
+    }
+
+
         
     }
+
+    // approve course material
+    if(isset($_POST['approve-btn'])){
+        
+        $approve_aql = "UPDATE `Courses` SET `approved` = '1' WHERE `Courses`.`CourseID` = 1 AND `Courses`.`Skillsets_SkillID` = 1;";
+
+
+    }
+
+
+    // select all teachers
+    function getAllTrainer(){
+        global $db;
+
+        $sql_selectTrainer_query = "SELECT * FROM `users` WHERE `UserType`=2;";
+        $result = mysqli_query($db, $sql_select_query);
+    }
+
+    // get all students 
+    function getAllStudents(){
+        global $db;
+
+        $sql_select_query = "SELECT * FROM `users` WHERE `UserType`=1;";
+
+    }
+
+    // add skill set function 
+    if(isset($_POST['add-skillset'])){ 
+        $skillName = $_POST['skillset'];
+        $skillsetDescription = $_POST['skillDescription'];
+        $roles = $_POST['skillsetRoles'];
+
+        $sql_insert_skill_query = "INSERT INTO `Skillsets`(
+            `SkillID`,
+            `SkillName`,
+            `SkillDescription`,
+            `Roles`
+        )
+            VALUES(
+                NULL, 
+                '$skillName', 
+                '$skillsetDescription', 
+                '$roles'
+            )";
+
+            // 
+            if($result = mysqli_query($db, $sql_insert_skill_query)){
+                $_SESSION['message'] = 'skill added successfully';
+                echo "<script>alert('skill added successfully');</script>";
+                header("Location:../add-skill-sets.php");
+            }else{
+                $_SESSION['message'] = 'Error adding skill set';
+                echo "<script>alert('Error adding skill set);</script>";
+                header("Location:../add-skill-sets.php");
+            }
+    }
+
+    // get course information to upload resources
+    if(isset($_GET['course'])){
+        $_SESSION['courseId'] = $_GET['course'];
+        echo "<script>alert('{$_GET['course']}');</script>";
+        echo "<script>window.location = '../add-course-resource.php';</script>";
+
+    }
+
+    if(isset($_GET['fileid'])){
+        $_SESSION['fileId'] = $_GET['fileid'];
+        echo "<script>alert('{$_GET['fileid']}');</script>";
+        echo "<script>window.location = '../admin-watch-video.php';</script>";
+
+    }
+
+
 
 
     // logout 
