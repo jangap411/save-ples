@@ -15,8 +15,7 @@
 
             <?php if($fetch['fileType'] == 'video') { ?>
 
-            <h4>Video Name</h4>
-    		<h5 class="text-primary"><?php echo $fetch['fileName']?></h5>
+            <h5>You're watching: <span class="text-primary"><?php echo $fetch['fileName']?></span></h5>
             <video width="100%" height="240" controls>
                 <source src="saveples/<?php echo $fetch['location']?>">
             </video>
@@ -25,10 +24,11 @@
                 Download Video
             </a>
             <?php }else { ?>
+            <h5>File Name: <span class="text-primary"><?php echo $fetch['fileName']?></span></h5>
                 <a href="saveples/<?php echo $fetch['location']?>" class="mb-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> 
-            Download File
-        </a>
+                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                Download File
+            </a>
         <?php } ?>
         </div>
         <?php } ?>

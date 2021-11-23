@@ -40,6 +40,8 @@ if(isset($_POST['login-btn'])){
         }
     }else if($userType == 2){
         // teacher/trainer login
+        echo "<script>alert('Teacher functionality is still under development')</script>";
+        echo "<script> window.location ='../login.php';</script>";
     }else{
         // admin login
 
@@ -55,7 +57,7 @@ if(isset($_POST['login-btn'])){
             // set session & user information
             $_SESSION['UserID'] = $row['userID'];
             $_SESSION['user'] = $row['name']; //$username;
-            
+            echo "<script>alert('Teacher functionality is still under development')</script>";
             header('location:../index.php');
         }else{
             $_SESSION['message'] = "Invalid Username or password";
@@ -164,10 +166,6 @@ if(isset($_POST['btn-register'])){
         $passMark = $_POST['passMark'];
         $max_tries = $_POST['attempts'];
         $approve = $_POST['approve'];
-        // $course_files = $_FILES['file']['name'];
-        // move_uploaded_file($_FILES['file']['tmp_name'],"../uploadContents/".$_FILES['file']['name']);
-        // $course_videos = $_FILES['video']['name'];
-        // move_uploaded_file($_FILES['video']['tmp_name'],"../uploadContents/".$_FILES['video']['name']);
         $tags = $_POST['tag'];
 
         $sql_insert_course_query = "INSERT INTO `Courses`(
@@ -269,14 +267,14 @@ if(isset($_POST['btn-register'])){
     // get course information to upload resources
     if(isset($_GET['course'])){
         $_SESSION['courseId'] = $_GET['course'];
-        echo "<script>alert('{$_GET['course']}');</script>";
+        // echo "<script>alert('{$_GET['course']}');</script>";
         echo "<script>window.location = '../add-course-resource.php';</script>";
 
     }
 
     if(isset($_GET['fileid'])){
         $_SESSION['fileId'] = $_GET['fileid'];
-        echo "<script>alert('{$_GET['fileid']}');</script>";
+        // echo "<script>alert('{$_GET['fileid']}');</script>";
         echo "<script>window.location = '../admin-watch-video.php';</script>";
 
     }
