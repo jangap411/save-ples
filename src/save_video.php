@@ -36,6 +36,9 @@
                     echo "<script>window.location = '../add-course-resource.php';</script>";
                     
                 }
+            }else{
+                echo "<script>alert('File format not allowed');</script>";
+                echo "<script>window.location = '../add-course-resource.php';</script>";
             }
         }else{
             echo "<script>alert('File too large to upload');</script>";
