@@ -57,7 +57,7 @@ if(isset($_POST['login-btn'])){
             // set session & user information
             $_SESSION['UserID'] = $row['userID'];
             $_SESSION['user'] = $row['name']; //$username;
-            echo "<script>alert('Teacher functionality is still under development')</script>";
+            // echo "<script>alert('Teacher functionality is still under development')</script>";
             header('location:../index.php');
         }else{
             $_SESSION['message'] = "Invalid Username or password";
