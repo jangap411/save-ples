@@ -267,6 +267,7 @@ if(isset($_POST['btn-register'])){
     // get course information to upload resources mycourse
     if(isset($_GET['course'])){
         $_SESSION['courseId'] = $_GET['course'];
+        $_SESSION['courseName'] = $_GET['n'];
         // echo "<script>alert('{$_GET['course']}');</script>";
         echo "<script>window.location = '../add-course-resource.php';</script>";
 
@@ -296,6 +297,24 @@ if(isset($_POST['btn-register'])){
         // echo "<script>alert('{$_GET['fileid']}');</script>";
         echo "<script>window.location = '../watch-video.php';</script>";
 
+    }
+
+    // delete course resource
+    if(isset($_GET['del_cfile'])){
+        $course_file_id = $_GET['del_cfile'];
+
+        $del_file_query = "DELETE FROM `course_files` WHERE `course_files`.`fileID` = $course_file_id";
+         
+        if(mysqli_query($db,   $del_file_query)){
+            // echo "<script>alert('Course approved');</script>";
+            echo "<script>window.location = '../add-course-resource.php'</script>";
+        }else{
+            echo "<script>alert('Error Removing File');</script>";
+            echo "<script>window.location = '../add-course-resource.php'</script>";
+        }
+        
+
+        
     }
 
 

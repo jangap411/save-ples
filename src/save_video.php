@@ -16,7 +16,7 @@
         if($file_size < 50000000){
             $file = explode('.',$file_name);
             $end = end($file);
-            $allowed_ext = array('avi','flv','wmv','mp4');
+            $allowed_ext = array('avi','flv','wmv','mp4','mp3');
             
             if(in_array($end,$allowed_ext)){
                 $name = date('Ymd').time();

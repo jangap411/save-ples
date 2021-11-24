@@ -5,7 +5,7 @@
         <!-- Circle Buttons -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Upload New Resourses: {Course Name}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Upload New Resourses for: <?php echo $_SESSION['courseName']; ?></h6>
             </div>
             <div class="card-body">
                 <p>Use Font Awesome Icons (included with this theme package) along with the circle
@@ -65,12 +65,12 @@
                         $query = mysqli_query($db, "SELECT * FROM `course_files` WHERE `courseID`=$id;") or die(mysqli_error());
     			        while($fetch = mysqli_fetch_array($query)){
                     ?>
-                    <!-- table body -->
+                    <!-- table body href="./src/server.php?del_cfile=<?php //echo $fetch['fileID'];?>" -->
                     <tr>
                         <td><a href="./src/server.php?fileid=<?php echo $fetch['fileID'];?>"><?php echo $fetch['fileName'];?></a></td>
                         <td><?php echo $fetch['fileType'] ?></td>
                         <td>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a onClick="delFile(<?php echo $fetch['fileID'];?>)" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -89,6 +89,20 @@
     </div>
 
 </div>
+<script>
+    function delFile(id){
+        
+        let isConfirm = confirm('Are you sure you want to delete?');
+
+        if(isConfirm){
+            // let xhr = new XMLHttpRequest();
+            // xhr.ope
+
+            window.location = `./src/server.php?del_cfile=${id}`;
+        }
+
+    }
+</script>
 
 <!-- modals here -->
 <!-- file upload -->

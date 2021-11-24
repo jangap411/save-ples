@@ -12,8 +12,10 @@
                         <th>Pass Mark</th>
                         <th>Max Attempts</th>
                         <th>Tags</th>
-                        <th>Approved</th>
-                        <th colspan="3">Action</th>
+                        <th>Status</th>
+                        <th>Approve</th>
+                        <th>Remove</th>
+                        <th>Manage</th>
                     </tr>
                 </thead>
                 <!-- table footer -->
@@ -26,8 +28,10 @@
                         <th>Pass Mark</th>
                         <th>Max Attempts</th>
                         <th>Tags</th>
-                        <th>Approved</th>
-                        <th colspan="3">Action</th>
+                        <th>Status</th>
+                        <th>Approve</th>
+                        <th>Remove</th>
+                        <th>Manage</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -59,7 +63,7 @@
                         </td>
                         <td>
 
-                            <a class="btn btn-info btn-circle btn-sm" href="./src/server.php?course=<?php echo $fetch['CourseID'];?>" data-toggle="tooltip" data-placement="top" title="Manage">
+                            <a class="btn btn-info btn-circle btn-sm" href="./src/server.php?course=<?php echo $fetch['CourseID'];?>&n=<?php echo $fetch['CourseName']?>" data-toggle="tooltip" data-placement="top" title="Manage">
                                 <i class="fas fa-cogs fa-sm fa-fw"></i>
                             </a>
                         </td>

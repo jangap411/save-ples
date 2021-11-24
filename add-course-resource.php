@@ -56,7 +56,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Add Course Resources</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Add Course Resources for <?php echo $_SESSION['courseName']; ?></h1>
 
                     <div class="row">
                         <!-- Dashboard cards -->
