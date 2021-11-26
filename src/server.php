@@ -35,7 +35,8 @@ if(isset($_POST['login-btn'])){
         }else{
             $_SESSION['message'] = "Invalid Username or password";
             echo '<script>alert("Invalid Username or password");</script>';
-            header('location:../login.php');
+            // header('location:../login.php');
+            echo "<script>window.location='../login.php'</script>";
 
         }
     }else if($userType == 2){
@@ -62,7 +63,7 @@ if(isset($_POST['login-btn'])){
         }else{
             $_SESSION['message'] = "Invalid Username or password";
             echo '<script>alert("Invalid Username or password");</script>';
-            header('location:../login.php');
+            echo "<script> window.location ='../login.php';</script>";
 
         }
     }
