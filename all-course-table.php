@@ -57,7 +57,7 @@
                             </a>
                         </td>
                         <td>
-                            <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
+                            <a href="#" onClick="removeCourse(<?php echo $fetch['CourseID']?>,<?php echo $fetch['Skillsets_SkillID']?>)" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
                                 <i class="fas fa-trash"></i>
                             </a>
                         </td>
@@ -77,3 +77,15 @@
         </div>
     </div>
 </div>
+
+<!-- remove course  -->
+<script>
+    function removeCourse(courseID, skillset_id){
+        let isConfirm = confirm("Are you sure you want to remve this course?\nThis action can not be undone");
+
+        if(isConfirm){
+            // alert(1);   
+            window.location =`./src/server.php?r_course=${id}&r_sid=${skillset_id}`;
+        }
+    }
+</script>

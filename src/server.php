@@ -312,12 +312,21 @@ if(isset($_POST['btn-register'])){
             echo "<script>alert('Error Removing File');</script>";
             echo "<script>window.location = '../add-course-resource.php'</script>";
         }
-        
-
-        
+ 
     }
 
+    // remove course from db
+    if(isset($_GET['r_course'])){
+        $cid = $_GET['r_course'];
+        $fid = $_GET['r_sid'];
 
+        $query = "DELETE FROM `Courses` WHERE `Courses`.`CourseID` = 4 AND `Courses`.`Skillsets_SkillID` = 2";
+
+        echo "<script>alert('$cid');</script>";
+        echo "<script>alert('{$fid}');</script>";
+        echo "<script>window.location='../see-courses.php';</script>";
+        
+    }
 
     // approve  a course
     if(isset($_GET['approve'])){
@@ -350,6 +359,24 @@ if(isset($_POST['btn-register'])){
             echo "<script>alert('Enroll to course');</script>";
             echo "<script>window.location = '../see-approved-courses.php';</script>";
         }
+
+    }
+
+/*
+    select count for the 
+
+*/
+
+    function getTotalNumbers($sql,$fieldName){
+        global $db;
+
+        // $sql = "SELECT COUNT(`UserID`) FROM `users` WHERE `UserType`=1;";
+        $query = mysqli_query($db, $sql);
+
+        $data = mysqli_fetch_assoc($query);
+        // return $data['COUNT(`UserID`)'];
+        return $data[$fieldName];
+
 
     }
 
