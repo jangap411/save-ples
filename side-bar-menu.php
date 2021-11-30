@@ -3,7 +3,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <!-- <i class="fas fa-laugh-wink"></i> -->
+            <i class="fas fa-graduation-cap"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SAVE PLES <sup>+</sup></div>
     </a>
@@ -55,7 +56,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Student Modules:</h6>
-                <a class="collapse-item" href="regsitered-student-list.php">Registered Students</a>
+                <a class="collapse-item" href="registered-student-list.php">Registered Students</a>
                 <!-- <a class="collapse-item" href="#">Borders</a>
                 <a class="collapse-item" href="#">Animations</a>
                 <a class="collapse-item" href="#">Other</a> -->
@@ -88,7 +89,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Manage Trainers</h6>
-                <a class="collapse-item" href="#">Trainer Lists</a>
+                <a class="collapse-item" href="trainers.php">Trainer List</a>
                 <a class="collapse-item" href="#">Add New Trainer</a>
                 <!-- <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                 <div class="collapse-divider"></div>

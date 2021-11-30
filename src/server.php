@@ -12,14 +12,14 @@ session_start();
 
 // create login functionality 
 if(isset($_POST['login-btn'])){
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $userType = $_POST['user-type'];
+    $email = mysqli_real_escape_string($db,$_POST['email']);
+    $password = mysqli_real_escape_string($db,$_POST['password']);
+    $userType = mysqli_real_escape_string($db,$_POST['user-type']);
 
     if($userType == 1){
         // student login
-        
-        $query = "SELECT * FROM `users` WHERE `email`='$email' AND `password`='$password';";
+        // SELECT * FROM `users` WHERE `email`='jack@email.com' AND `password`='jack' AND `UserType`=1;
+        $query = "SELECT * FROM `users` WHERE `email`='$email' AND `password`='$password' AND `UserType`=$userType;";
         $result = mysqli_query($db, $query);
         // $row = mysqli_fetch_array($result);
         $row = mysqli_fetch_assoc($result);
@@ -73,25 +73,25 @@ if(isset($_POST['login-btn'])){
 }
 
 
-// registration
+// user registration
 if(isset($_POST['btn-register'])){
     
-    $firstName = $_POST['FirstName'];
-    $lastName = $_POST['LastName'];
-    $dob = $_POST['dob'];
-    $clan = $_POST['clan'];
-    $village = $_POST['village'];
-    $llg = $_POST['llg'];
-    $ward = $_POST['ward'];
-    $province = $_POST['province'];
-    $phone = $_POST['phone'];
-    $contactAddress = $_POST['contactAdress'];
-    $district = $_POST['district'];
-    $userType = $_POST['user-type'];
-    $gender = $_POST['gender'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $username = $_POST['username'];
+    $firstName = mysqli_real_escape_string($db,$_POST['FirstName']);
+    $lastName = mysqli_real_escape_string($db,$_POST['LastName']);
+    $dob = mysqli_real_escape_string($db,$_POST['dob']);
+    $clan = mysqli_real_escape_string($db,$_POST['clan']);
+    $village = mysqli_real_escape_string($db,$_POST['village']);
+    $llg = mysqli_real_escape_string($db,$_POST['llg']);
+    $ward = mysqli_real_escape_string($db,$_POST['ward']);
+    $province = mysqli_real_escape_string($db,$_POST['province']);
+    $phone = mysqli_real_escape_string($db,$_POST['phone']);
+    $contactAddress = mysqli_real_escape_string($db,$_POST['contactAdress']);
+    $district = mysqli_real_escape_string($db,$_POST['district']);
+    $userType = mysqli_real_escape_string($db,$_POST['user-type']);
+    $gender = mysqli_real_escape_string($db,$_POST['gender']);
+    $email = mysqli_real_escape_string($db,$_POST['email']);
+    $password = mysqli_real_escape_string($db,$_POST['password']);
+    $username = mysqli_real_escape_string($db,$_POST['username']);
 
     // $sql_insert_query = "INSERT INTO `users` (`UserID`, `FirstName`, `LastName`, `email`, `username`, `password`, `DOB`, `Gender`, `Clan`, `Village`, `District`, `LLG`, `Ward`, `Province`, `Phone`, `Contact`, `UserType`) VALUES (NULL, '$firtName', '$lastName', '$email', '$username', '$password', '$dob', '$gender', '$clan', '$village', '$district', '$llg', '$ward', '$province', '$contactAdress', '$userType');";
 
@@ -136,11 +136,14 @@ if(isset($_POST['btn-register'])){
 
     if(mysqli_query($db,$sql_insert_query)){
         $_SESSION['message'] = "User Registered";
-            header("Location:../login.php");
+        echo "<script>alert('Registered Successfully');</script>";
+        header("Location:../login.php");
 
     }else{
-        echo "Error Registering User";
+        // echo "Error Registering User".mysqli_error($db);
         $_SESSION['message'] = "Error Registering User".mysqli_error($db);
+        echo "<script>window.location.href = '../register.html';</script>";
+
     }
 
 }
@@ -159,15 +162,15 @@ if(isset($_POST['btn-register'])){
 
     // register add couse
     if(isset($_POST['btn-register-course'])){
-        $course_name = $_POST['courseName'];
-        $course_descrpt = $_POST['courseDescrpt'];
-        $skillset = $_POST['skillset'];
-        $trainerId = $_POST['trainerId'];
-        $dateAdded = $_POST['addDate'];
-        $passMark = $_POST['passMark'];
-        $max_tries = $_POST['attempts'];
-        $approve = $_POST['approve'];
-        $tags = $_POST['tag'];
+        $course_name = mysqli_real_escape_string($db,$_POST['courseName']);
+        $course_descrpt = mysqli_real_escape_string($db,$_POST['courseDescrpt']);
+        $skillset = mysqli_real_escape_string($db,$_POST['skillset']);
+        $trainerId = mysqli_real_escape_string($db,$_POST['trainerId']);
+        $dateAdded = mysqli_real_escape_string($db,$_POST['addDate']);
+        $passMark = mysqli_real_escape_string($db,$_POST['passMark']);
+        $max_tries = mysqli_real_escape_string($db, $_POST['attempts']);
+        $approve = mysqli_real_escape_string($db,$_POST['approve']);
+        $tags = mysqli_real_escape_string($db,$_POST['tag']);
 
         $sql_insert_course_query = "INSERT INTO `Courses`(
             `CourseID`,
@@ -196,12 +199,12 @@ if(isset($_POST['btn-register'])){
 
     if(mysqli_query($db, $sql_insert_course_query)){
         $_SESSION['message'] = "Success, records saved";
-        echo "<script>alert('Success, records saved');window.location.href = 'http://localhost/saveples/addCourse.php';</script>";
+        echo "<script>alert('Success, records saved');window.location.href = '../addCourse.php';</script>";
         // header("Location:../addCourse.php");
     }else{
         $_SESSION['message'] = "Error, records not saved";
         echo "<script>alert('Error, records not saved');</script>";
-        // window.location.href = 'http://localhost/saveples/addCourse.php';
+        echo "<script>window.location.href = '../addCourse.php';</script>";
 
     }
 
@@ -211,8 +214,10 @@ if(isset($_POST['btn-register'])){
 
     // approve course material
     if(isset($_POST['approve-btn'])){
+        $_course_id = mysqli_real_escape_string($db,$_GET['']);
+        $_skillset_id = mysqli_real_escape_string($db,$_GET['']);
         
-        $approve_aql = "UPDATE `Courses` SET `approved` = '1' WHERE `Courses`.`CourseID` = 1 AND `Courses`.`Skillsets_SkillID` = 1;";
+        $approve_aql = "UPDATE `Courses` SET `approved` = '1' WHERE `Courses`.`CourseID` = $_course_id AND `Courses`.`Skillsets_SkillID` = $_skillset_id;";
 
 
     }
@@ -236,9 +241,9 @@ if(isset($_POST['btn-register'])){
 
     // add skill set function 
     if(isset($_POST['add-skillset'])){ 
-        $skillName = $_POST['skillset'];
-        $skillsetDescription = $_POST['skillDescription'];
-        $roles = $_POST['skillsetRoles'];
+        $skillName = mysqli_real_escape_string($db,$_POST['skillset']);
+        $skillsetDescription = mysqli_real_escape_string($db,$_POST['skillDescription']);
+        $roles = mysqli_real_escape_string($db,$_POST['skillsetRoles']);
 
         $sql_insert_skill_query = "INSERT INTO `Skillsets`(
             `SkillID`,
@@ -267,7 +272,7 @@ if(isset($_POST['btn-register'])){
 
     // get course information to upload resources mycourse
     if(isset($_GET['course'])){
-        $_SESSION['courseId'] = $_GET['course'];
+        $_SESSION['courseId'] = mysqli_real_escape_string($db,$_GET['course']);
         $_SESSION['courseName'] = $_GET['n'];
         // echo "<script>alert('{$_GET['course']}');</script>";
         echo "<script>window.location = '../add-course-resource.php';</script>";
@@ -276,8 +281,8 @@ if(isset($_POST['btn-register'])){
 
     // open student course resource
     if(isset($_GET['mycourse'])){
-        $_SESSION['courseId'] = $_GET['mycourse'];
-        $_SESSION['courseName'] = $_GET['name'];
+        $_SESSION['courseId'] = mysqli_real_escape_string($db,$_GET['mycourse']);
+        $_SESSION['courseName'] = mysqli_real_escape_string($db,$_GET['name']);
 
         // echo "<script>alert('{$_GET['course']}');</script>";
         echo "<script>window.location = '../my-course-resources.php';</script>";
@@ -286,7 +291,7 @@ if(isset($_POST['btn-register'])){
 
     // open watch video page
     if(isset($_GET['fileid'])){
-        $_SESSION['fileId'] = $_GET['fileid'];
+        $_SESSION['fileId'] = mysqli_real_escape_string($db,$_GET['fileid']);
         // echo "<script>alert('{$_GET['fileid']}');</script>";
         echo "<script>window.location = '../admin-watch-video.php';</script>";
 
@@ -294,7 +299,7 @@ if(isset($_POST['btn-register'])){
 
     // student watch
     if(isset($_GET['fid'])){
-        $_SESSION['fileId'] = $_GET['fid'];
+        $_SESSION['fileId'] = mysqli_real_escape_string($db,$_GET['fid']);
         // echo "<script>alert('{$_GET['fileid']}');</script>";
         echo "<script>window.location = '../watch-video.php';</script>";
 
@@ -302,7 +307,7 @@ if(isset($_POST['btn-register'])){
 
     // delete course resource
     if(isset($_GET['del_cfile'])){
-        $course_file_id = $_GET['del_cfile'];
+        $course_file_id = mysqli_real_escape_string($db,$_GET['del_cfile']);
 
         $del_file_query = "DELETE FROM `course_files` WHERE `course_files`.`fileID` = $course_file_id";
          
@@ -318,8 +323,8 @@ if(isset($_POST['btn-register'])){
 
     // remove course from db
     if(isset($_GET['r_course'])){
-        $cid = $_GET['r_course'];
-        $fid = $_GET['r_sid'];
+        $cid = mysqli_real_escape_string($db,$_GET['r_course']);
+        $fid = mysqli_real_escape_string($db,$_GET['r_sid']);
 
         $query = "DELETE FROM `Courses` WHERE `Courses`.`CourseID` = 4 AND `Courses`.`Skillsets_SkillID` = 2";
 
@@ -331,8 +336,8 @@ if(isset($_POST['btn-register'])){
 
     // approve  a course
     if(isset($_GET['approve'])){
-        $courseId = $_GET['approve'];
-        $skillsetId = $_GET['skillID'];
+        $courseId = mysqli_real_escape_string($db,$_GET['approve']);
+        $skillsetId = mysqli_real_escape_string($db,$_GET['skillID']);
 
         $update_sql_query = "UPDATE `Courses` SET `approved` = 'true' WHERE `Courses`.`CourseID` =$courseId AND `Courses`.`Skillsets_SkillID` = $skillsetId;";
 
@@ -347,8 +352,8 @@ if(isset($_POST['btn-register'])){
 
     // enroll to a course
     if(isset($_GET['enroll'])){
-        $courseID = $_GET['enroll'];
-        $studentID = $_GET['std'];
+        $courseID = mysqli_real_escape_string($db,$_GET['enroll']);
+        $studentID = mysqli_real_escape_string($db,$_GET['std']);
 
         $query = "INSERT INTO `enrollment` (`studentId`, `courseID`) VALUES ('$studentID', '$courseID')";
         $result = mysqli_query($db, $query);
@@ -382,7 +387,7 @@ if(isset($_POST['btn-register'])){
     }
 
     // logout 
-    if (isset($_GET['logout'])) {
+    if (isset($_GET['logout'])){
         session_destroy();
         unset($_SESSION['userSession']);
         header("Location: ../login.php");

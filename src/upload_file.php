@@ -28,7 +28,7 @@
 
     				}
     			}else{
-    				echo "<script>alert('Wrong File format')</script>";
+    				echo "<script>alert('Wrong File format.')</script>";
     				echo "<script>window.location = '../add-course-resource.php';</script>";
 
     			}
