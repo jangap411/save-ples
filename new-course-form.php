@@ -4,29 +4,29 @@
 <div class="card-body">
     <form class="user" action="./src/server.php" method="post">
         <div class="form-group row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <p>Course Name</p>
-            <input
-            type="text"
-            class="form-control form-control-user"
-            id="courseName"
-            name="courseName"
-            placeholder="Enter Course Name"
-            required
-            />
-        
-        </div>
-        <div class="col-sm-6">
-            <label for="courseDescrpt" class="small"
-            >Course Description</label
-            >
-            <textarea
-            class="form-control"
-            id="courseDescrpt"
-            name="courseDescrpt"
-            rows="3"
-            ></textarea>
-        </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <p>Course Name</p>
+                <input
+                type="text"
+                class="form-control form-control-user"
+                id="courseName"
+                name="courseName"
+                placeholder="Enter Course Name"
+                required
+                />
+            
+            </div>
+            <div class="col-sm-6">
+                <label for="courseDescrpt" class="small"
+                >Course Description</label
+                >
+                <textarea
+                class="form-control"
+                id="courseDescrpt"
+                name="courseDescrpt"
+                rows="3"
+                ></textarea>
+            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">

@@ -386,6 +386,46 @@ if(isset($_POST['btn-register'])){
 
     }
 
+
+
+    // create exam really 
+    if(isset($_POST['create-exam-btn'])){
+
+        $exam_title = mysqli_real_escape_string($db,$_POST['exam_title']);
+        $skillset_id = mysqli_real_escape_string($db,$_POST['skillset_id']);
+        $startTime = mysqli_real_escape_string($db,$_POST['exam_time']);
+        $exam_type = mysqli_real_escape_string($db,$_POST['exam_type']);
+        $course_id = mysqli_real_escape_string($db,$_POST['course']);
+
+
+        $create_sql = "INSERT INTO `exam_table`(
+            `title`,
+            `skillset_id`,
+            `course_id`,
+            `startTime`,
+            `exam_type`
+        )
+        VALUES(
+            '$exam_title',
+            '$skillset_id',
+            '$course_id',
+            '$startTime',
+            '$exam_type'
+        );";
+        
+        // 
+        if(mysqli_query($db, $create_sql)){
+            echo "<script>alert('Exam Created');</script>";
+            echo "<script>window.location = '../add-course-resource.php';</script>";
+        }else{
+            echo "<script>alert('Error Creating Exam');</script>";
+            echo "<script>window.location = '../add-course-resource.php';</script>";
+        }
+            
+
+
+    }
+
     // logout 
     if (isset($_GET['logout'])){
         session_destroy();

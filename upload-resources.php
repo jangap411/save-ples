@@ -21,11 +21,18 @@
                     <span class="text">Upload Course File</span>
                 </a>
                 <div class="my-2"></div>
-                <a href="#" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#videoUploadModal">
+                <a href="#" class="btn btn-success btn-icon-split" data-toggle="modal" data-target="#videoUploadModal">
                     <span class="icon text-white-50">
                         <i class="fas fa-video"></i>
                     </span>
                     <span class="text">Upload Course Video</span>
+                </a>
+                <div class="my-2"></div>
+                <a href="#" class="btn btn-info btn-icon-split" data-toggle="modal" data-target="#createTest">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-vial"></i>
+                    </span>
+                    <span class="text">Create Test</span>
                 </a>
             </div>
         </div>

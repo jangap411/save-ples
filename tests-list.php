@@ -16,11 +16,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Learning website, teaching you new skill sets">
-    <meta name="keywords" content="Saveples, Learning, Skills, Skill sets">
-    <meta name="author" content="Jedidiah Angap">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <title>SAVE PLES - Manage</title>
+    <title>SAVE PLES - Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,12 +55,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Add Course Resources for <?php echo $_SESSION['courseName']; ?></h1>
+                    <h1 class="h3 mb-4 text-gray-800">Manage Available Tests</h1>
 
                     <div class="row">
                         <!-- Dashboard cards -->
                         <?php include 'dashboard-cards.php'; ?>
-                        <?php include 'upload-resources.php'; ?>
+                        <!-- create Test lists -->
+                        <?php include 'test-list-table.php'; ?>
                         
                     </div>
                     
@@ -94,8 +94,7 @@
 
     <!-- Logout Modal-->
     <?php include 'log-out-modal.php'; ?>
-    <!-- create test modal -->
-     <?php include 'create-test-modal.php'; ?>
+    <?php include 'create-test-modal.php'; ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
