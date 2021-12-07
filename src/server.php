@@ -396,6 +396,9 @@ if(isset($_POST['btn-register'])){
         $startTime = mysqli_real_escape_string($db,$_POST['exam_time']);
         $exam_type = mysqli_real_escape_string($db,$_POST['exam_type']);
         $course_id = mysqli_real_escape_string($db,$_POST['course']);
+        $totalQustns = mysqli_real_escape_string($db,$_POST['total_exam_question']);
+        $totalMarks = mysqli_real_escape_string($db,$_POST['total_exam_score']);
+        $exam_duration = mysqli_real_escape_string($db,$_POST['exam_dur']);
 
 
         $create_sql = "INSERT INTO `exam_table`(
@@ -403,14 +406,20 @@ if(isset($_POST['btn-register'])){
             `skillset_id`,
             `course_id`,
             `startTime`,
-            `exam_type`
+            `exam_type`,
+            `exam_duration`,
+            `total_qustns`,
+            `total_score`
         )
         VALUES(
             '$exam_title',
             '$skillset_id',
             '$course_id',
             '$startTime',
-            '$exam_type'
+            '$exam_type',
+            '$exam_duration',
+            '$totalQustns',
+            '$totalMarks'
         );";
         
         // 
@@ -420,10 +429,23 @@ if(isset($_POST['btn-register'])){
         }else{
             echo "<script>alert('Error Creating Exam');</script>";
             echo "<script>window.location = '../add-course-resource.php';</script>";
+            // echo mysqli_error($db);
         }
             
 
 
+    }
+
+
+    // open add exam questions page
+    if(isset($_GET['manage-exam'])){
+        $exam_id = mysqli_real_escape_string($db,$_GET['manage-exam']);
+        $_SESSION['exam_id'] = $exam_id;
+        $_SESSION['exam_name'] = mysqli_real_escape_string($db,$_GET['name']);
+
+        // echo $exam_id;
+
+        echo "<script>window.location='../add-questions.php';</script>";
     }
 
     // logout 

@@ -11,6 +11,7 @@
                         <th>Start Time</th>
                         <th>Test Type</th>
                         <th>Total Question</th>
+                        <th>Total Marks</th>
                         <th>Duration</th>
                         <th>Action</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <th>Start Time</th>
                         <th>Text Type</th>
                         <th>Total Question</th>
+                        <th>Total Marks</th>
                         <th>Duration</th>
                         <th>Action</th>
                     </tr>
@@ -52,9 +54,10 @@
                                 }
                             ?>
                         </td>
-                        <td>15</td>
-                        <td>1hr</td>
-                        <td><a href="./src/server.php?manage-exam=<?php echo $fetch['exam_id'];?>">Manage</a></td>
+                        <td><?php echo $fetch['total_qustns']; ?></td>
+                        <td><?php echo $fetch['total_score']; ?></td>
+                        <td><?php echo $fetch['exam_duration']; ?> Minutes</td>
+                        <td><a href="./src/server.php?manage-exam=<?php echo $fetch['exam_id'];?>&name=<?php echo $fetch['title'];?>">Manage</a></td>
                     </tr>
                     <?php
     			    }
