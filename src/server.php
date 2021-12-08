@@ -442,10 +442,65 @@ if(isset($_POST['btn-register'])){
         $exam_id = mysqli_real_escape_string($db,$_GET['manage-exam']);
         $_SESSION['exam_id'] = $exam_id;
         $_SESSION['exam_name'] = mysqli_real_escape_string($db,$_GET['name']);
+        $_SESSION['course_id'] = mysqli_real_escape_string($db,$_GET['cid']);
+        $_SESSION['total_qustns'] = mysqli_real_escape_string($db,$_GET['qustns']);
 
         // echo $exam_id;
 
         echo "<script>window.location='../add-questions.php';</script>";
+    }
+
+
+    // add exam questions
+    if(isset($_POST['create-question-btn'])){
+        // 
+        $exam_id = mysqli_real_escape_string($db,$_POST['exam_id']);
+        $course_id = mysqli_real_escape_string($db,$_POST['course_id']);
+        $question_no = mysqli_real_escape_string($db,$_POST['question_no']);
+        $question_title = mysqli_real_escape_string($db,$_POST['test_question']);
+        $corrent_ans = mysqli_real_escape_string($db,$_POST['correctOption']);
+        $optionA = mysqli_real_escape_string($db,$_POST['testOptionA']);
+        $optionB = mysqli_real_escape_string($db,$_POST['testOptionB']);
+        $optionC = mysqli_real_escape_string($db,$_POST['testOptionC']);
+        $optionD = mysqli_real_escape_string($db,$_POST['testOptionD']);
+        // echo 'create question';
+        // die('create question');
+
+        // create question sql 
+        $create_question_sql = "INSERT INTO `questions_table`(
+            `exam_id`,
+            `course_id`,
+            `question_no`,
+            `question_title`,
+            `correct_opt`,
+            `optionA`,
+            `optionB`,
+            `optionC`,
+            `optionD`
+        )
+        VALUES(
+            '$exam_id',
+            '$course_id',
+            '$question_no',
+            '$question_title',
+            '$corrent_ans',
+            '$optionA',
+            '$optionB',
+            '$optionC',
+            '$optionD'
+        );";
+
+       if (mysqli_query($db,$create_question_sql)) {
+            echo "<script>alert('Question Added');</script>";
+            echo "<script>window.location = '../add-questions.php';</script>";
+       }else{
+            echo "<script>alert('Error Adding question');</script>";
+            echo "<script>window.location = '../add-questions.php';</script>";
+            echo mysqli_error($db);
+       }
+
+
+
     }
 
     // logout 
