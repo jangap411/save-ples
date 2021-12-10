@@ -503,6 +503,18 @@ if(isset($_POST['btn-register'])){
 
     }
 
+    // get student answers to save
+    if(isset($_GET['exam'])){
+
+        $exam_id = mysqli_real_escape_string($db,$_GET['exam']);
+        $question_no = mysqli_real_escape_string($db,$_GET['qstn']);
+        $student_id = mysqli_real_escape_string($db,$_GET['std']);
+        $answer = mysqli_real_escape_string($db,$_GET['ans']);
+        
+
+        saveTestAnswers($exam_id,$question_no,$student_id,$answer);
+    }
+
     // save student answers
     function saveTestAnswers($exam_id, $question_no, $student_id,$answer){
         global $db;
@@ -525,6 +537,17 @@ if(isset($_POST['btn-register'])){
         if(!$query){
             echo "<script>alert('error saving answers')";
         }
+
+    }
+
+    // open the exam questions page
+    if(isset($_GET['take-exam'])){
+        $_SESSION['exam_id'] = mysqli_real_escape_string($db,$_GET['take-exam']);
+        $_SESSION['test_name'] = mysqli_real_escape_string($db,$_GET['tname']);
+        $_SESSION['course_name'] = mysqli_real_escape_string($db,$_GET['cname']);
+
+
+        echo "<script> window.location='../student-course-test.php';</script>";
 
     }
 

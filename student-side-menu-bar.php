@@ -13,7 +13,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="index-student.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -57,7 +57,7 @@
                 <h6 class="collapse-header">Tasks Modules:</h6>
                 <a class="collapse-item" href="#">Assignments</a>
                 <a class="collapse-item" href="">Quizes</a>
-                <a class="collapse-item" href="student-course-test.php">Tests</a>
+                <a class="collapse-item" href="my-tests.php">Tests</a>
                 <!-- <a class="collapse-item" href="#">Animations</a>
                 <a class="collapse-item" href="#">Other</a> -->
             </div>

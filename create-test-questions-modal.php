@@ -57,10 +57,10 @@
                            <label class="mb-0" for="correctOption">Select Correct Option</label>
                            <select class="form-control" id="correctOption" name="correctOption">
                                <option value="0">--Select Option--</option>
-                               <option value="1">Option A</option>
-                               <option value="2">Option B</option>
-                               <option value="3">Option C</option>
-                               <option value="4">Option D</option>
+                               <option value="A">Option A</option>
+                               <option value="B">Option B</option>
+                               <option value="C">Option C</option>
+                               <option value="D">Option D</option>
                             </select>
                         </div>
                     </div>
