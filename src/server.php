@@ -503,6 +503,31 @@ if(isset($_POST['btn-register'])){
 
     }
 
+    // save student answers
+    function saveTestAnswers($exam_id, $question_no, $student_id,$answer){
+        global $db;
+
+        $saveAnswerSql = "INSERT INTO `student_answer`(
+            `exam_id`,
+            `question_no`,
+            `student_id`,
+            `answer`
+        )
+        VALUES(
+            '$exam_id',
+            '$question_no',
+            '$student_id',
+            '$answer'
+        );";
+
+        $query = mysqli_query($db, $saveAnswerSql);
+
+        if(!$query){
+            echo "<script>alert('error saving answers')";
+        }
+
+    }
+
     // logout 
     if (isset($_GET['logout'])){
         session_destroy();
