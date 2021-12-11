@@ -545,6 +545,7 @@ if(isset($_POST['btn-register'])){
         $_SESSION['exam_id'] = mysqli_real_escape_string($db,$_GET['take-exam']);
         $_SESSION['test_name'] = mysqli_real_escape_string($db,$_GET['tname']);
         $_SESSION['course_name'] = mysqli_real_escape_string($db,$_GET['cname']);
+        $_SESSION['exam_type'] = mysqli_real_escape_string($db,$_GET['type']);
 
 
         echo "<script> window.location='../student-course-test.php';</script>";

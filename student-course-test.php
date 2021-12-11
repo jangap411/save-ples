@@ -20,7 +20,7 @@
     <meta name="keywords" content="Saveples, Learning, Skills, Skill sets">
     <meta name="author" content="Jedidiah Angap">
 
-    <title>SAVE PLES - Dashboard</title>
+    <title>SAVE PLES - Tests</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -60,9 +60,18 @@
 
                     <div class="row">
                         <!-- Dashboard cards -->
-                        <?php include 'test-multiple-choice.php'; ?>
+                        <?php 
+                            if($_SESSION['exam_type'] == 1){
+                                include 'test-multiple-choice.php';
+                            }else if($_SESSION['exam_type'] == 2){
+                                include 'matching-test.php';
+                            }else{
+                                echo "<h2>True or False Questions</h2>";
+                            }
+                        ?>
+                        <?php  ?>
                         <?php //include 'test-matching.php'; ?>
-                        <?php include 'matching-test.php'; ?>
+                        <?php  ?>
                         
                     </div>
                     

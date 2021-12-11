@@ -58,7 +58,7 @@
                         <td><?php echo $fetch['total_qustns']; ?></td>
                         <td><?php echo $fetch['total_score']; ?></td>
                         <td><?php echo $fetch['exam_duration']; ?> Minutes</td>
-                        <td><a href="./src/server.php?take-exam=<?php echo $fetch['exam_id'];?>&cname=<?php echo $fetch['CourseName'];?>&tname=<?php echo $fetch['title'];?>">Start</a></td>
+                        <td><a href="./src/server.php?take-exam=<?php echo $fetch['exam_id'];?>&cname=<?php echo $fetch['CourseName'];?>&tname=<?php echo $fetch['title'];?>&type=<?php echo $fetch['exam_type'];?>">Start</a></td>
                     </tr>
                     <?php
     			    }
