@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>CJHAY</title>
+  </head>
+  <body>
+    <main>
+      <section class="container">
+        <div class="introduction">
+          <div class="intro-text">
+            <h1 id="demo">Welcome to SAVE PLES</h1>
+            <h2>This is me counting down to one special day</h2>
+            <p>
+              If you knew me like you said, you will know what this count down
+              is for. <br />
+            </p>
+            <span style="font-size: 18px">&#128522;</span>
+          </div>
+          <div class="part">
+            <!-- <button class="part-home">
+              <a href="login.php">LOGIN</a>
+            </button>
+            <button class="part-travel">
+              <a href="register.html">REGISTER</a>
+            </button> -->
+          </div>
+        </div>
+        <div class="cover">
+          <img
+            src="img/happy_birthday.svg"
+            alt="education illustration"
+            srcset=""
+          />
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Set the date we're counting down to 2021-12-15 18:41:54
+      var countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+      //   var countDownDate = new Date("2021-12-14 00:41:54").getTime();
+
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML =
+          days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML =
+            "HAPPY BIRTHDAY CJHAY MOSES, GOD BLESS";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

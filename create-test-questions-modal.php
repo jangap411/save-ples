@@ -71,7 +71,7 @@
                             $qstn = (int)$count;
                             $total = (int)$_SESSION['total_qustns']; 
                             if($qstn == $total){
-                                echo '<input type="submit" value="Total Reached" id="create-question-btn" name="create-question-btn" class="btn btn-primary" disabled>';
+                                echo '<input type="submit" value="Total Reached" id="create-question-btn" name="create-question-btn" class="btn btn-primary" disabled style="cursor:not-allowed;">';
                             }else{
                                 echo '<input type="submit" value="Create" id="create-question-btn" name="create-question-btn" class="btn btn-primary">';
                             }

@@ -10,10 +10,12 @@
          <?php 
             $exam_id = $_SESSION['exam_id'];
             $questions = [];
+            $correctOption = [];
 
             $query = mysqli_query($db, "SELECT * FROM `questions_table` WHERE `exam_id`=$exam_id;") or die(mysqli_error($db));
             while($fetch = mysqli_fetch_array($query)){
                 array_push($questions,$fetch['question_no']);
+                array_push($correctOption,$fetch['correct_opt']);
 
         ?>
         <p>
@@ -58,6 +60,7 @@
         </p>
         
         <?php } ?>
+        <?php print_r($correctOption); ?>
         <input type="submit" value="Submit Answers" class="btn btn-primary float-right" name='answer-btn'>
         </form>
         <p class="mb-0">
@@ -68,7 +71,7 @@
 <script>
 
     let form = document.querySelector("#form");
-    let total_number_of_qstns = <?php echo json_encode($questions);?>;
+    let total_number_of_qstns = <?php echo json_encode($correctOption);?>;
 
     let answers =[];
     let options = {};
@@ -82,6 +85,7 @@
         let count = 0;
         
        for(let a in answers){
+           
            count++;
 
            if(count == answers.length){
@@ -90,10 +94,13 @@
            }
 
            let xhr = new XMLHttpRequest();
+
+    
            xhr.open('GET',`./src/server.php?exam=<?php echo $exam_id; ?>&qstn=${answers[a].question}&std=<?php echo $_SESSION['UserID'];?>&ans=${answers[a].answer}`,true);
     
            xhr.onload = () =>{
                console.log(this.responseText);
+               alert(this.responseText);
            }
     
            xhr.send();

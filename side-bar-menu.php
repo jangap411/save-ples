@@ -80,8 +80,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Student Modules:</h6>
                 <a class="collapse-item" href="registered-student-list.php">Registered Students</a>
-                <!-- <a class="collapse-item" href="#">Borders</a>
-                <a class="collapse-item" href="#">Animations</a>
+                <a class="collapse-item" href="#">Assessment Results</a>
+                <!-- <a class="collapse-item" href="#">Animations</a>
                 <a class="collapse-item" href="#">Other</a> -->
             </div>
         </div>

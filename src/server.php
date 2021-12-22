@@ -513,6 +513,8 @@ if(isset($_POST['btn-register'])){
         
 
         saveTestAnswers($exam_id,$question_no,$student_id,$answer);
+        
+
     }
 
     // save student answers
@@ -536,7 +538,55 @@ if(isset($_POST['btn-register'])){
 
         if(!$query){
             echo "<script>alert('error saving answers')";
+        }else{
+            
+             // select correct answer
+            $squery_get_correct_ans = "SELECT `correct_opt` FROM `questions_table` WHERE `exam_id`=$exam_id AND`question_no`=$question_no;";
+    
+            $correct_opt = 'correct_opt';
+            $check = getTotalNumbers($squery_get_correct_ans,$correct_opt);
+    
+            if($check == $answer){
+                echo "<script>alert('mark saved +1');</script>";
+                $score = 1;
+                //save answer 
+                saveMark($student_id,$exam_id,$question_no,$score);
+    
+            }else{
+                echo "<script>alert('mark saved +0');</script>";
+                $score = 0;
+                saveMark($student_id,$exam_id,$question_no,$score);
+            }
         }
+
+    }
+
+    function saveMark($stdnt_id, $exam_id, $question_no, $mark){
+        global $db;
+
+        $insert_mark_sql = "INSERT INTO `test_marks`(
+            `test_mark_std_id`,
+            `test_mark_exam_id`,
+            `test_mark_std_makr`,
+            `test_mark_qstn_no`
+        )
+        VALUES(
+            '$stdnt_id',
+            '$exam_id',
+            '$mark',
+            '$question_no'
+        );";
+
+
+        $query = mysqli_query($db, $insert_mark_sql);
+
+        if($query){
+            echo "<script>alert('saved test mark');</script>";
+        }else{
+            echo "<script>alert('Error saving');</script>";
+        }
+
+        
 
     }
 
@@ -555,7 +605,7 @@ if(isset($_POST['btn-register'])){
     // logout 
     if (isset($_GET['logout'])){
         session_destroy();
-        unset($_SESSION['userSession']);
+        unset($_SESSION['user']);
         header("Location: ../login.php");
     }
 
