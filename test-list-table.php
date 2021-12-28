@@ -46,7 +46,7 @@
                         <td>
                             <?php
                                 if($fetch['exam_type'] == '1'){
-                                    echo "Multiple Choice";
+                                    echo "Multiple Choice"; 
                                 }else if($fetch['exam_type'] == '2'){
                                     echo "Matching";
                                 }else{
@@ -57,7 +57,9 @@
                         <td><?php echo $fetch['total_qustns']; ?></td>
                         <td><?php echo $fetch['total_score']; ?></td>
                         <td><?php echo $fetch['exam_duration']; ?> Minutes</td>
-                        <td><a href="./src/server.php?manage-exam=<?php echo $fetch['exam_id'];?>&name=<?php echo $fetch['title'];?>&cid=<?php echo $fetch['course_id'];?>&qustns=<?php echo $fetch['total_qustns'];?>">Manage</a></td>
+                        <td>
+                            <a href="./src/server.php?manage-exam=<?php echo $fetch['exam_id'];?>&name=<?php echo $fetch['title'];?>&cid=<?php echo $fetch['course_id'];?>&qustns=<?php echo $fetch['total_qustns'];?>&isapproved=<?php echo $fetch['exam_approved'];?>">Manage</a>
+                        </td>
                     </tr>
                     <?php
     			    }

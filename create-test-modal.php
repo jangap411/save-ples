@@ -15,6 +15,7 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <p>Test Name</p>
                                 <input type="hidden" name="course" id="course" value="<?php echo $_SESSION['courseId']; ?>"/>
+                                <input type="hidden" name="approved" id="approved" value="0"/>
                                 <input
                                     type="text"
                                     class="form-control form-control-user"

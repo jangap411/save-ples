@@ -34,7 +34,7 @@
                     <?php 
                         // require 'src/db-connection.php';
                         $std_id = $_SESSION['UserID'];
-                        $query = mysqli_query($db, "SELECT * FROM `enrollment`, `exam_table`, `Courses`, `Skillsets` WHERE `enrollment`.`courseID` = `exam_table`.`course_id` AND `enrollment`.`studentId` = $std_id AND `enrollment`.`courseID` = `Courses`.`CourseID` AND `Skillsets`.`SkillID` = `Courses`.`Skillsets_SkillID`;") or die(mysqli_error());
+                        $query = mysqli_query($db, "SELECT * FROM `enrollment`, `exam_table`, `Courses`, `Skillsets` WHERE `enrollment`.`courseID` = `exam_table`.`course_id` AND `enrollment`.`studentId` = $std_id AND `enrollment`.`courseID` = `Courses`.`CourseID` AND `Skillsets`.`SkillID` = `Courses`.`Skillsets_SkillID` AND `exam_table`.`exam_approved`=1;") or die(mysqli_error($db));
     			        while($fetch = mysqli_fetch_array($query)){
                     ?>
                     <!-- table body -->

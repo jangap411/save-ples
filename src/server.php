@@ -399,6 +399,7 @@ if(isset($_POST['btn-register'])){
         $totalQustns = mysqli_real_escape_string($db,$_POST['total_exam_question']);
         $totalMarks = mysqli_real_escape_string($db,$_POST['total_exam_score']);
         $exam_duration = mysqli_real_escape_string($db,$_POST['exam_dur']);
+        $approved = mysqli_real_escape_string($db,$_POST['approved']);
 
 
         $create_sql = "INSERT INTO `exam_table`(
@@ -409,7 +410,8 @@ if(isset($_POST['btn-register'])){
             `exam_type`,
             `exam_duration`,
             `total_qustns`,
-            `total_score`
+            `total_score`,
+            `approved`
         )
         VALUES(
             '$exam_title',
@@ -419,7 +421,8 @@ if(isset($_POST['btn-register'])){
             '$exam_type',
             '$exam_duration',
             '$totalQustns',
-            '$totalMarks'
+            '$totalMarks',
+            '$approved'
         );";
         
         // 
@@ -441,13 +444,47 @@ if(isset($_POST['btn-register'])){
     if(isset($_GET['manage-exam'])){
         $exam_id = mysqli_real_escape_string($db,$_GET['manage-exam']);
         $_SESSION['exam_id'] = $exam_id;
+        $_SESSION['isAppovedExam'] = mysqli_real_escape_string($db,$_GET['isapproved']);
         $_SESSION['exam_name'] = mysqli_real_escape_string($db,$_GET['name']);
         $_SESSION['course_id'] = mysqli_real_escape_string($db,$_GET['cid']);
         $_SESSION['total_qustns'] = mysqli_real_escape_string($db,$_GET['qustns']);
 
         // echo $exam_id;
 
+
         echo "<script>window.location='../add-questions.php';</script>";
+    }
+
+    // approve exam for students to see
+    if(isset($_GET['examApproveId'])){
+        $exam_id = mysqli_real_escape_string($db,$_GET['examApproveId']);
+        $approved = mysqli_real_escape_string($db,$_GET['examApproveVal']);
+
+        // update sql
+        $update_sql = "UPDATE `exam_table` SET `exam_approved` = '$approved' WHERE `exam_table`.`exam_id` = $exam_id;";
+
+        if (mysqli_query($db, $update_sql)) {
+            
+            $_SESSION['isAppovedExam'] = $approved;
+            
+            if($approved=="1"){
+                echo "<script>alert('Question Paper Approved');</script>";
+
+            }else{
+                echo "<script>alert('Question Paper Disapproved');</script>";
+            }
+
+            echo "<script>window.location = '../add-questions.php';</script>";
+       }else{
+            if($approved=="1"){
+                echo "<script>alert('Error Approving Question Paper');</script>";
+
+            }else{
+                echo "<script>alert('Error Disapproving Question Paper');</script>";
+            }
+            echo "<script>window.location = '../add-questions.php';</script>";
+            echo mysqli_error($db);
+       }
     }
 
 

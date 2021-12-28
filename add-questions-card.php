@@ -14,18 +14,45 @@
                 <div class="mb-2">
                     
                 </div>
-                    <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#createTestQustn">
+                <!-- Add questions button -->
+                <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#createTestQustn">
                     <span class="icon text-white-50">
                         <i class="fas fa-file-pdf"></i>
                     </span>
                     <span class="text">Add Questions</span>
-                </a>
-                <div class="my-2"></div>
+                 </a>
+                 <!-- Approve button -->
+                 <?php $approve = "";?>
+                  <a href="./src/server.php?examApproveId=<?php echo $_SESSION['exam_id'];?>&examApproveVal=<?php if($_SESSION['isAppovedExam'] == "0"){$approve = "1"; echo $approve;}else{$approve = "0";echo $approve;};?>" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span class="text">
+                        <?php 
+                            if($approve == "0"){
+                                echo "Disapprove Test";
+                            }else{
+                                echo "Approve Test";
+                            }
+                        ?>
+                    </span>
+                 </a>
+                <div class="my-2">
+                    
+                </div>
             </div>
         </div>
     </div>
-
-    
+        
+    <?php 
+        if($_SESSION['exam_type'] == 1){
+            include 'test-multiple-choice.php';
+        }else if($_SESSION['exam_type'] == 2){
+            include 'matching-test.php';
+        }else{
+            echo "<h2>True or False Questions</h2>";
+        }
+    ?>
 
 </div>
 
