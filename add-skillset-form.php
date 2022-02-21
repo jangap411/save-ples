@@ -5,12 +5,12 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <p>Skill Sets</p>
                 <input
-                type="text"
-                class="form-control form-control-user"
-                id="skillset"
-                name="skillset"
-                placeholder="Enter Skill Sets"
-                required
+                    type="text"
+                    class="form-control form-control-user"
+                    id="skillset"
+                    name="skillset"
+                    placeholder="Enter Skill Sets"
+                    required
                 />
             
             </div>
@@ -32,26 +32,34 @@
                 <p>Roles
                     </p>
                     <?php 
-                        $skillsetQuery = "SELECT DISTINCT `Roles` FROM `Skillsets`;";
-                        $result = mysqli_query($db, $skillsetQuery);
+                        // $skillsetQuery = "SELECT DISTINCT `Roles` FROM `Skillsets`;";
+                        // $result = mysqli_query($db, $skillsetQuery);
                         
-                        echo '<select class="form-control" id="skillsetRoles" name="skillsetRoless">';
-                        if(mysqli_num_rows($result)>0){
+                        // echo '<select class="form-control" id="skillsetRoles" name="skillsetRoless">';
+                        // if(mysqli_num_rows($result)>0){
                             
-                            while($row = mysqli_fetch_assoc($result)){
-                                // echo ' <option value="{'$row['UserID'}">'{$row['username']}'</option>';
-                                echo "<option value='{$row['Roles']}'>";
-                                echo $row['Roles'];
-                                echo "</option>";
-                            }
-                        }
+                        //     while($row = mysqli_fetch_assoc($result)){
+                        //         // echo ' <option value="{'$row['UserID'}">'{$row['username']}'</option>';
+                        //         echo "<option value='{$row['Roles']}'>";
+                        //         echo $row['Roles'];
+                        //         echo "</option>";
+                        //     }
+                        // }
                         
-                        echo '</select>';
+                        // echo '</select>';
                         
                     ?>
-                    <a href="#" class="btn btn-info btn-circle btn-sm float-end mt-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Skill Set" data-toggle="modal" data-target="#addRole">
+                    <!-- <a href="#" class="btn btn-info btn-circle btn-sm float-end mt-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Skill Set" data-toggle="modal" data-target="#addRole">
                             <i class="fas fa-plus-circle"></i>
-                    </a>
+                    </a> -->
+                     <input
+                        type="text"
+                        class="form-control form-control-user"
+                        id="skillsetRoles"
+                        name="skillsetRoles"
+                        placeholder="Enter Skill Roles"
+                        required
+                />
             </div>
             <!-- space available -->
             <div class="col-sm-6">

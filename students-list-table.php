@@ -2,12 +2,19 @@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            
+            <?php 
+                $userType = $_SESSION['userType'];
+
+                if($userType == 3){
+            ?>
                 <!-- table head -->
                 <thead>
                     <tr>
+                        <th>Course</th>
                         <th>Student Name</th>
-                        <th>Email</th>
                         <th>Username</th>
+                        <th>Email</th>
                         <th>DOB</th>
                         <th>Gender</th>
                         <th>Clan</th>
@@ -23,9 +30,10 @@
                 <!-- table footer -->
                 <tfoot>
                     <tr>
+                        <th>Course</th>
                         <th>Student Name</th>
-                        <th>Email</th>
                         <th>Username</th>
+                        <th>Email</th>
                         <th>DOB</th>
                         <th>Gender</th>
                         <th>Clan</th>
@@ -41,14 +49,15 @@
                 <tbody>
                     <?php 
                         require 'src/db-connection.php';
-                        $query = mysqli_query($db, "SELECT * FROM `users` WHERE `UserType`=1;") or die(mysqli_error());
+                        $query = mysqli_query($db, "SELECT * FROM `users`, `enrollment`,`Courses` WHERE `users`.`UserType`=1 AND `users`.`UserID`=`enrollment`.`studentId` AND `courses`.`CourseID`=`enrollment`.`courseID`;") or die(mysqli_error($db));
     			        while($fetch = mysqli_fetch_array($query)){
                     ?>
                     <!-- table body -->
                     <tr>
+                        <td><?php echo $fetch['CourseName']; ?></td>
                         <td><?php echo $fetch['FirstName'].' '.$fetch['LastName'] ?></td>
-                        <td><?php echo $fetch['email'] ?></td>
                         <td><?php echo $fetch['username'] ?></td>
+                        <td><?php echo $fetch['email'] ?></td>
                         <td><?php echo $fetch['DOB'] ?></td>
                         <td><?php echo $fetch['Gender'] ?></td>
                         <td><?php echo $fetch['Clan'] ?></td>
@@ -64,6 +73,49 @@
     			    }
     		        ?>
                 </tbody>
+                <?php }else{ ?>
+                    <!-- table head -->
+                <thead>
+                    <tr>
+                         <th>Course</th>
+                        <th>Student Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <!-- table footer -->
+                <tfoot>
+                    <tr>
+                         <th>Course</th>
+                        <th>Student Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <?php 
+                        require 'src/db-connection.php';
+                        $query = mysqli_query($db, "SELECT * FROM `users`, `enrollment`,`Courses` WHERE `users`.`UserType`=1") or die(mysqli_error($db));
+    			        while($fetch = mysqli_fetch_array($query)){
+                    ?>
+                    <!-- table body -->
+                    <tr>
+                         <td><?php echo $fetch['CourseName']; ?></td>
+                        <td><?php echo $fetch['FirstName'].' '.$fetch['LastName'] ?></td>
+                        <td><?php echo $fetch['username'] ?></td>
+                        <td><?php echo $fetch['email'] ?></td>
+                        <td><?php echo $fetch['DOB'] ?></td>
+                        <td><?php echo $fetch['Gender'] ?></td>
+                    </tr>
+                    <?php
+    			    }
+    		        ?>
+                </tbody>
+                <?php } ?>
             </table>
         </div>
     </div>

@@ -2,9 +2,9 @@
 
     include './src/server.php';
  
-    // if(empty($_SESSION['user'])){
-    //     header('location: login.php');
-    // }
+    if(empty($_SESSION['user'])){
+        header('location: login.php');
+    }
 
 ?>
 
@@ -60,7 +60,10 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">My Courses</h1>
-                    <?php include 'my-courses-table.php'; ?>
+                    <?php //include 'my-courses-table.php'; ?>
+                    <div class="row">
+                        <?php include 'my-courses-card.php'; ?>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 

@@ -1,6 +1,7 @@
 <?php
     // $total_std = getTotalNumbers();
-    $sqlGetTotalCourseTaken = "SELECT COUNT(`enrollment`.`studentId`) FROM `Courses`,`enrollment`,`users` WHERE `Courses`.`CourseID`=`enrollment`.`courseID` AND `users`.`UserID`=`enrollment`.`studentId` AND `enrollment`.`studentId`=1;";
+    $stdId = $_SESSION['UserID'];
+    $sqlGetTotalCourseTaken = "SELECT COUNT(`enrollment`.`studentId`) FROM `Courses`,`enrollment`,`users` WHERE `Courses`.`CourseID`=`enrollment`.`courseID` AND `users`.`UserID`=`enrollment`.`studentId` AND `enrollment`.`studentId`=$stdId;";
     $fieldName_courseCount = 'COUNT(`enrollment`.`studentId`)';
 
     $sqlGetTotalCourses = "SELECT COUNT(`CourseID`) FROM `Courses`;";
@@ -17,7 +18,7 @@
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Courses Taken</div>
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <?php echo getTotalNumbers($sqlGetTotalCourseTaken,$fieldName_courseCount) ?>/5
+                    <?php echo getTotalNumbers($sqlGetTotalCourseTaken,$fieldName_courseCount) ?>
                     </div>
                 </div>
                 <div class="col-auto">

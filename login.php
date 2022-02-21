@@ -41,6 +41,7 @@
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
+                      <h1 style="color: #4e73df;">Save Ples</h1>
                       <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                       <span><?php if(isset($_SESSION['message'])){echo $_SESSION['message'];}?>
                     </div>
@@ -65,16 +66,16 @@
                         />
                       </div>
                        <div class="form-group">
-                       <label class="small" for="user-type">Login As</label>
+                       <!-- <label class="small" for="user-type">Login As</label>
                       <select
                         class="form-control"
                         id="user-type"
                         name="user-type"
                       >
                         <option value="1">Student</option>
-                        <option value="2">Teacher</option>
+                        <option value="2">Trainer</option>
                         <option value="3">Admin</option>
-                      </select>
+                      </select> -->
                       </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
@@ -117,7 +118,7 @@
                       >
                     </div> -->
                     <div class="text-center">
-                      <a class="small" href="register.html"
+                      <a class="small" href="register.php"
                         >Create an Account!</a
                       >
                     </div>

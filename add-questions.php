@@ -6,6 +6,11 @@
         header('location: login.php');
     }
 
+    if($_SESSION['userType'] == '1'){
+        echo "<script>alert('user type 1');</script>";
+        header('location: login.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +101,8 @@
     <?php include 'log-out-modal.php'; ?>
     <!-- create test modal -->
      <?php include 'create-test-questions-modal.php'; ?>
+
+    
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

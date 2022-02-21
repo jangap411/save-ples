@@ -7,7 +7,7 @@
         <div class="card-body">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <!-- table head -->
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
 
                     $id = $_SESSION['courseId'];
                     require 'src/db-connection.php';
-                    $query = mysqli_query($db, "SELECT * FROM `course_files` WHERE `courseID`=$id;") or die(mysqli_error());
+                    $query = mysqli_query($db, "SELECT * FROM `course_files` WHERE `courseID`=$id;") or die(mysqli_error($db));
                     while($fetch = mysqli_fetch_array($query)){
                 ?>
                 <!-- table body -->

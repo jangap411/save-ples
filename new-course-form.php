@@ -130,7 +130,7 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                  <label class="small" for="user-type">Choose Trainer</label>
                  <?php 
-                    $trainerQuery = "SELECT * FROM `users` WHERE `UserType`=2;";
+                    $trainerQuery = "SELECT * FROM `users` WHERE `UserType`=2 AND `approvedTrainer`=1;";
                     $result = mysqli_query($db, $trainerQuery);
 
                     echo '<select class="form-control" id="trainerId" name="trainerId">';

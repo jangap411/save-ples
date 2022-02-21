@@ -74,5 +74,5 @@
         </p>
     </div>
 </div>
-
+<!-- box-big-shadow -->
 <script src="js/drag-cards.js"></script>

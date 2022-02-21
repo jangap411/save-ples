@@ -6,6 +6,11 @@
         header('location: login.php');
     }
 
+    if($_SESSION['userType'] == '1'){
+        echo "<script>alert('user type 1');</script>";
+        header('location: login.php');
+    }
+
 ?>
 
 <!DOCTYPE html>

@@ -33,13 +33,13 @@
                     <?php
                         require 'src/db-connection.php';
 
-                        $query = mysqli_query($db, "SELECT * FROM `Courses` WHERE `approved`='true';") or die(mysqli_error());
+                        $query = mysqli_query($db, "SELECT * FROM `Courses`,`users` WHERE `Courses`.`TrainerID`=`users`.`UserID` AND `approved`='true';") or die(mysqli_error($db));
     			        while($fetch = mysqli_fetch_array($query)){
                     ?>
                     <tr>
                         <td><?php echo $fetch['CourseName']?> </td>
                         <td><?php echo $fetch['Course_description']?></td>
-                        <td><?php echo $fetch['TrainerID']?></td>
+                        <td><?php echo $fetch['username']?></td>
                         <td><?php echo $fetch['PassMark']?></td>
                         <td><?php echo $fetch['Tag']?></td>
                         <td><?php echo $fetch['MaxAttempts']?></td>

@@ -10,10 +10,12 @@
          <?php 
             $exam_id = $_SESSION['exam_id'];
             $questions = [];
+            $correctOption = [];
 
             $query = mysqli_query($db, "SELECT * FROM `questions_table` WHERE `exam_id`=$exam_id;") or die(mysqli_error($db));
             while($fetch = mysqli_fetch_array($query)){
                 array_push($questions,$fetch['question_no']);
+                array_push($correctOption,$fetch['correct_opt']);
 
         ?>
         <p>
@@ -22,14 +24,14 @@
             <div class="row">
                 <div class="p-3 w-50">
                     <div class="form-check mb-2">
-                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo $fetch['question_no']; ?>answer" id="answer" value="A">
+                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo $fetch['question_no']; ?>answer" id="answer" value="A" required>
                          <strong>A.</strong>
                         <label class="form-check-label" for="q<?php echo$fetch['question_no']; ?>answer">
                             <?php echo $fetch['optionA']; ?>
                         </label>
                     </div>
                     <div class="form-check mb-2">
-                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input mr-5" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="B" id="answer">
+                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input mr-5" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="B" id="answer" required>
                         <strong>B.</strong>
                         <label class="form-check-label" for="q<?php echo$fetch['question_no']; ?>answer">
                             <?php echo $fetch['optionB']; ?>
@@ -39,14 +41,14 @@
                 </div>
                 <div class="p-3">
                     <div class="form-check mb-2">
-                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="C" id="answer">
+                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="C" id="answer" required>
                         <strong>C.</strong>
                         <label class="form-check-label" for="q<?php echo$fetch['question_no']; ?>answer">
                             <?php echo $fetch['optionC']; ?>
                         </label>
                     </div>
                     <div class="form-check mb-2">
-                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="D" id="answer">
+                        <input onClick="radioBtnClick(this.value,<?php echo $fetch['question_no']; ?>)" class="form-check-input" type="radio" name="q<?php echo$fetch['question_no']; ?>answer" value="D" id="answer" required>
                         <strong>D.</strong>
                         <label class="form-check-label float-right" for="q<?php echo$fetch['question_no']; ?>answer">
                             <?php echo $fetch['optionD']; ?>
@@ -68,12 +70,11 @@
 <script>
 
     let form = document.querySelector("#form");
-    let total_number_of_qstns = <?php echo json_encode($questions);?>;
+    let total_number_of_qstns = <?php echo json_encode($correctOption);?>;
 
     let answers =[];
     let options = {};
     
-    console.log(total_number_of_qstns);
 
  
 
@@ -82,18 +83,26 @@
         let count = 0;
         
        for(let a in answers){
+           
            count++;
 
            if(count == answers.length){
                 alert('Answers submitted');
                 window.location = 'index-student.php';
            }
+        //    else{
+        //       return alert('Please Attempt all the questions');
+        //    }
 
            let xhr = new XMLHttpRequest();
+
+        //    if(){}
+    
            xhr.open('GET',`./src/server.php?exam=<?php echo $exam_id; ?>&qstn=${answers[a].question}&std=<?php echo $_SESSION['UserID'];?>&ans=${answers[a].answer}`,true);
     
            xhr.onload = () =>{
                console.log(this.responseText);
+            //    alert(this.responseText);
            }
     
            xhr.send();
@@ -139,4 +148,5 @@
         
 
     }
+    console.log( options);
 </script>

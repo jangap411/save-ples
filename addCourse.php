@@ -1,11 +1,14 @@
 <?php
-
     include './src/server.php';
- 
-    // if(empty($_SESSION['user'])){
-    //     header('location: login.php');
-    // }
 
+    if(empty($_SESSION['user'])){
+        header('location: login.php');
+    }
+    
+    if($_SESSION['userType'] == '1'){
+        echo "<script>alert('user type 1');</script>";
+        header('location: login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +60,9 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Register New Course</h1>
+                    
                     <?php include 'new-course-form.php'; ?>
+                   
                 </div>
                 <!-- /.container-fluid -->
 

@@ -55,9 +55,10 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Tasks Modules:</h6>
-                <a class="collapse-item" href="#">Assignments</a>
-                <a class="collapse-item" href="">Quizes</a>
-                <a class="collapse-item" href="my-tests.php">Tests</a>
+                <a class="collapse-item" href="#" onclick="alert('feature coming soon');">Assignments</a>
+                <a class="collapse-item" href="#" onclick="alert('feature coming soon');">Quizes</a>
+                <a class="collapse-item" href="my-tests.php">Take Tests</a>
+                <a class="collapse-item" href="#" onclick="alert('feature coming soon');">Tests Results</a>
                 <!-- <a class="collapse-item" href="#">Animations</a>
                 <a class="collapse-item" href="#">Other</a> -->
             </div>

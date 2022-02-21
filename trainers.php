@@ -6,6 +6,11 @@
         header('location: login.php');
     }
 
+    if($_SESSION['userType'] == '1'){
+        echo "<script>alert('user type 1');</script>";
+        header('location: login.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SAVE PLES - Student List</title>
+    <title>SAVE PLES - Trainers List</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
