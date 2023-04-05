@@ -7,7 +7,7 @@ A minimal Learning Management System dashboard application that allows the stude
 
 ## Preview
 
-[![Save Ples Preview](https://res.cloudinary.com/dy20irqrz/image/upload/v1680651376/saweples_rx80dp.png)
+![Save Ples Preview](https://res.cloudinary.com/dy20irqrz/image/upload/v1680651376/saweples_rx80dp.png)
 
 
 ## Built Using SB Bootstrap
